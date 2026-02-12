@@ -1,0 +1,148 @@
+<?php
+/* Smarty version 5.7.0, created on 2026-02-12 10:30:47
+  from 'file:student-profile.tpl' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.7.0',
+  'unifunc' => 'content_698dabd7dc4452_95507891',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '2e0f85fd08cfc4a0fe567ca13daed091952912b1' => 
+    array (
+      0 => 'student-profile.tpl',
+      1 => 1770891610,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:studentHeader.tpl' => 1,
+  ),
+))) {
+function content_698dabd7dc4452_95507891 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
+?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+  <?php echo '</script'; ?>
+>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <?php echo '<script'; ?>
+ src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+>
+    base_url = '<?php echo $_smarty_tpl->getValue('base_url');?>
+';
+    console.log("Base URL:", base_url);
+  <?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->getValue('base_url');?>
+js/student-management.js"><?php echo '</script'; ?>
+>
+
+    <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
+css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <?php $_smarty_tpl->renderSubTemplate("file:studentHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
+  <div class="container-fluid mt-5 main-content">
+  <sidebar>
+      <div class="list-group">
+        <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
+studentform/" class="list-group-item list-group-item-action active" aria-current="true">
+          <i class="fa-solid fa-user-plus"></i> Add student
+        </a>
+        <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
+insertData/display" class="list-group-item list-group-item-action">
+          <i class="fa-solid fa-file-import"></i>Import file</a>
+
+      </div>
+    </sidebar>
+    <div class="card w-50 profile-card">
+      <div class="card-header ">
+
+        Student Profile
+      </div>
+
+      <div class="card-body">
+        <figure>
+          <figcaption class="blockquote-footer">
+            <img src="<?php echo $_smarty_tpl->getValue('base_url');?>
+images/img2.jpg" alt="Profile" class="rounded-circle me-2 custom-header-img mt-2 mb-2"
+              style="width: 60px; height: 60px;">
+            <div class="row">
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Student Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['fname'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
+ <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['lname'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
+</p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Father's Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['father_name'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
+</p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Gender:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['gender'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+</p>
+              </div>
+
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Email:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['email'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+</p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Phone:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['mobile'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+</p>
+              </div>
+
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">DOB:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['dob'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+</p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Department:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['department'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+</p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Course:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['course'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+</p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">City:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['city'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+</p>
+              </div>
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Address:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['address'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+ </p>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
+</html><?php }
+}

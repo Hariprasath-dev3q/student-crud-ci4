@@ -1,0 +1,265 @@
+/* dashboard */
+  *{
+      box-sizing: border-box; 
+  }
+    .custom-dropdown {
+      height: auto;
+    }
+
+    .dropdown-toggle {
+      height: auto;
+      padding: 8px 16px !important;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .dropdown-toggle p {
+      margin: 0;
+    }
+
+    .dashboard-header {
+      background: linear-gradient(90deg, #4e73df, #224abe);
+      color: white;
+      z-index: 2000;
+      position: sticky;
+      top: 0;
+    }
+
+    /* login page */
+    .login-form {
+      background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%) !important;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    #custom-eye {
+      position: absolute !important;
+      right: 50px !important;
+      top: 220px !important;
+      cursor: pointer !important;
+    }
+
+    /* Profile */
+
+    body {
+      background-color: #f8f9fc !important;
+    }
+
+    .custom-dropdown {
+      height: auto;
+    }
+
+    .dropdown-toggle {
+      height: auto;
+      padding: 8px 16px !important;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .dropdown-toggle p {
+      margin: 0;
+    }
+
+    sidebar {
+      position: fixed;
+      /* top: 58px; */
+      top: 0;
+      left: 0;
+      width: 200px;
+      /* height: calc(100% - 58px); */
+      height: 100vh;
+      background-color: #f8f9fa;
+      padding: 20px;
+      z-index: 1000;
+    }
+   
+    .list-group{
+      position: relative;
+      margin-top: 100px;
+    }
+
+    .main-content {
+      margin-left: 220px;
+      margin-top: 20px !important;
+      width: calc(100% - 220px);
+    }
+
+    .custom-header-img {
+      width: 50px;
+      height: 50px;
+      background-color: aqua
+    }
+
+    .dashboard-header {
+      background: linear-gradient(90deg, #4e73df, #224abe);
+      color: white !important;
+      /* padding: 20px 30px; */
+      /* border-radius: 10px; */
+    }
+
+    /* ... */
+
+    
+
+    .blockquote-footer::before {
+      content: "";
+    }
+
+    sidebar a {
+      transition: 0.2s ease;
+      display: block;
+    }
+
+    sidebar a:hover {
+      transform: translateX(5px);
+      /* background-color: #e9ecef !important; */
+    }
+
+    .profile-card:hover {
+      transform: translateY(-3px);
+      transition: 0.3s ease;
+    }
+
+/* student form details */
+.custom-edit-icon {
+      color: black;
+    }
+
+    .custom-del-icon {
+      color: red;
+    }
+
+    th,
+    td {
+      border: 1px solid black !important;
+    }
+
+    img {
+      width: 150px;
+    }
+
+    .pagination {
+      margin-top: 20px;
+
+    }
+
+    .dropdown {
+      margin-bottom: 20px;
+      width: 100dvw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dropdown select,
+    option {
+      padding: 10px 15px;
+      border-radius: 5px;
+      background-color: #f8f8f8;
+      border: 1px solid #ddd;
+      color: #333;
+    }
+
+    /* student form */
+
+    .custom-form {
+      background-color: #ffe6c7 !important;
+    }
+
+    .error {
+      color: #ff0000;
+    }
+
+    .customImg {
+      position: relative;
+    }
+
+    .customBtn {
+      position: relative;
+      bottom: 45px;
+      right: 25px;
+    }
+
+    .customEyeBtn {
+      background: none;
+      border: none;
+      position: relative
+    }
+
+    .customEye {
+      position: absolute;
+      bottom: 30px;
+      left: 230px
+    }
+
+    .customEye:hover {
+      color: grey;
+
+    }
+
+    /* Student bulk insert */
+    .custom-edit-icon {
+      color: black;
+    }
+
+    .custom-del-icon {
+      color: red;
+    }
+
+    th,
+    td {
+      border: 1px solid black !important;
+    }
+
+    img {
+      width: 150px;
+    }
+
+    .pagination-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .page-btn {
+      padding: 10px 16px;
+      margin: 0 4px;
+      border: 1px solid #ddd;
+      text-decoration: none;
+      color: #333;
+      border-radius: 6px;
+      background: #f8f8f8;
+      transition: 0.2s;
+    }
+
+    .page-btn:hover {
+      background: #e2e2e2;
+    }
+
+    .page-btn.active {
+      background: #cfd3db;
+      font-weight: bold;
+    }
+
+    .dots {
+      padding: 10px 12px;
+    }
+
+    .custom-table table,tr,td,th {
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: hidden;
+    }
+    .table-responsive{
+      overflow-x: hidden !important;
+    }
+
+    .custom-scroll{
+      overflow:scroll !important;
+      overflow-y:hidden !important;
+    }
+    /* navbar */
