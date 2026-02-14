@@ -20,7 +20,7 @@
     var base_url='{$base_url}';
   </script>
   <script src="{$base_url}js/student-form.js"></script>
-   <script src="{$base_url}js/student-management.js"></script>
+  <script src="{$base_url}js/student-management.js"></script>
 
   {* <style>
     .custom-edit-icon {
@@ -114,10 +114,11 @@
 <body>
 
   {include file="studentHeader.tpl"}
-  
+
   <sidebar>
     <div class="list-group">
-      <a href="{$base_url}studentform/" class="list-group-item list-group-item-action active" aria-current="true">
+      <a href="{$base_url}studentform/display" class="list-group-item list-group-item-action active"
+        aria-current="true">
         <i class="fa-solid fa-user-plus"></i> Add student
       </a>
       <a href="{$base_url}insertData/display" class="list-group-item list-group-item-action">
@@ -126,13 +127,17 @@
   </sidebar>
 
   <div class="container main-content mt-3">
-    <div class="col-md-12 mb-3 d-flex justify-content-between">
+    <div class="col-md-12 mb-3 d-flex ">
       <div class="d-flex justify-content-start">
         <a href="{$addUserUrl}" class="btn btn-primary mb-3 text-decoration-none text-white">Add User</a>
       </div>
+      <div class="input-group ms-3 mb-3 w-25">
+        <input type="text" class="form-control" id="searchTeacherName" name="searchTeacherName" placeholder="Search" aria-label="Username"
+          aria-describedby="basic-addon1" onchange="searchTeacherByName(event)" >
+      </div>
     </div>
   </div>
-  
+
   <div id="student-container" class="container main-content custom-scroll mt-3">
     {include file="studentDetails_partial.tpl"}
   </div>

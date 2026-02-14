@@ -11,7 +11,7 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="{$base_url}js/student-form.js"></script>
-   <script src="{$base_url}js/student-management.js"></script>
+  <script src="{$base_url}js/student-management.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 
   {* <style>
@@ -103,15 +103,15 @@
 <body>
   {include file="studentHeader.tpl"}
   <sidebar>
-      <div class="list-group">
-        <a href="{$base_url}studentform/" class="list-group-item list-group-item-action active" aria-current="true">
-          <i class="fa-solid fa-user-plus"></i> Add student
-        </a>
-        <a href="{$base_url}insertData/display" class="list-group-item list-group-item-action">
-          <i class="fa-solid fa-file-import"></i>Import file</a>
+    <div class="list-group">
+      <a href="{$base_url}studentform/" class="list-group-item list-group-item-action active" aria-current="true">
+        <i class="fa-solid fa-user-plus"></i> Add student
+      </a>
+      <a href="{$base_url}insertData/display" class="list-group-item list-group-item-action">
+        <i class="fa-solid fa-file-import"></i>Import file</a>
 
-      </div>
-    </sidebar>
+    </div>
+  </sidebar>
   <div
     class="container main-content bg-secondary bg-gradient bg-opacity-50 custom-form rounded w-50 shadow p-3 mb-5 bg-body rounded mt-3"
     id="myForm">
@@ -257,13 +257,29 @@
 
       <div class="mb-3 row">
         <div class="col">
+          <label for="teacher_name">Teacher Name : </label>
+        </div>
+        <div class="col-8">
+          <select name="teacher_id" id="teacher_id" class="form-select" required>
+            <option value="">Select Teacher</option>
+            {foreach $teachers as $teacher}
+            <option value="{$teacher.staffId}">
+              {$teacher.teacherName}
+            </option>
+            {/foreach}
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <div class="col">
           <label for="studentPic" class="form-label">Student photo : </label>
         </div>
         {* img preview *}
         <div class="col-8">
           <div class="previewImageFile">
             <img id="preview" src="{if !empty($item.file)}{$base_url}{$item.file}{/if}" alt="No Student Pic"
-              class="customImg" style="width:100px; height:100px;{if empty($item.file)}display:none;{/if}" >
+              class="customImg" style="width:100px; height:100px;{if empty($item.file)}display:none;{/if}">
 
             <button type="button" class="customBtn" title="delete"
               style="border:none; background:transparent;{if empty($item.file)}display:none;{/if}">

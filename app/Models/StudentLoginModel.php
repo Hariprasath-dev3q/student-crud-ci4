@@ -7,10 +7,10 @@ use CodeIgniter\Model;
 class StudentLoginModel extends Model
 {
 
-  protected $table = 'studentregisterationform';
-  protected $allowedFields = ['rollNo', 'fname', 'lname', 'father_name', 'dob', 'mobile', 'email', 'password', 'gender', 'department', 'course', 'city', 'address'];
+  protected $table = 'staff';
+  protected $allowedFields = ['teacherName','email', 'password'];
 
-  public function getallStudents()
+  public function getallStaffs()
   {
     return $this->findAll();
   }
@@ -19,8 +19,6 @@ class StudentLoginModel extends Model
   {
     $email = trim($email);
     $password = trim($password);
-
-    // Use parameterized query to prevent SQL injection
     $student = $this->where('email', $email)->first();
 
     if (!$student) {
@@ -28,7 +26,6 @@ class StudentLoginModel extends Model
       return false;
     }
 
-    // Check if password field exists and is not empty
     if (empty($student['password'])) {
       log_message('error', "No password stored for email: {$email}");
       return false;
@@ -38,17 +35,14 @@ class StudentLoginModel extends Model
     log_message('debug', "Stored password (encrypted): {$storedPassword}");
     log_message('debug', "Attempting login with password: {$password}");
 
-    // Try to decrypt the password
     $decryptedPassword = $this->decryptText($storedPassword);
     log_message('debug', "Decrypted password: " . var_export($decryptedPassword, true));
 
-    // Check if password matches (handle both encrypted and plain text)
     if ($decryptedPassword === $password) {
-      // Password was encrypted
       log_message('info', "Login successful for email: {$email} (encrypted match)");
+      log_message('debug', "Student data returned: " . print_r($student, true));
       return $student;
     } elseif ($storedPassword === $password) {
-      // Password was stored as plain text
       log_message('warning', "Plain text password found for email: {$email}. Consider encrypting stored passwords.");
       return $student;
     }
@@ -56,6 +50,18 @@ class StudentLoginModel extends Model
     log_message('warning', "Invalid password for email: {$email}. Decrypted: " . var_export($decryptedPassword, true) . " | Provided: {$password}");
     return false;
   }
+
+  public function staffSignup($email, $password, $teacherName)
+  {
+    $result = $this->db->table('staff')
+      ->insert([
+        'teacherName' => $teacherName,
+        'email' => $email,
+        'password' => $this->encryptText($password)
+      ]);
+    return $result;
+  }
+
 
   private $encryptionKey = 'hnZs6%aExcFrSyMM';
 

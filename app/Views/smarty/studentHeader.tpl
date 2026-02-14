@@ -7,13 +7,13 @@
           aria-expanded="false">
           <img src="{$base_url}images/img2.jpg" alt="Profile" class="rounded-circle me-2"
             style="width: 25px; height: 25px;">
-          <p class="text-white">Welcome, {$studentData.fname|default:"Guest"}</p>
+          <p class="text-white">Welcome, {$studentData.teacherName|default:"Guest"}</p>
         </button>
         <ul class="dropdown-menu dropdown-menu-end me-0">
           <li><a class="dropdown-item" href="{$base_url}studentform/profile">Profile
               <i class="fa-solid fa-user"></i>
             </a></li>
-          <li class=""><a class="dropdown-item text-danger" onclick="logout(event)">Logout
+          <li class="custom-logout"><a class="dropdown-item text-danger " onclick="logout(event)">Logout
               <i class="fa-solid fa-right-from-bracket"></i>
             </a></li>
         </ul>

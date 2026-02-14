@@ -42,6 +42,19 @@
       cursor: pointer !important;
     }
 
+    .custom-logout{
+      cursor: pointer !important;
+      
+    }
+
+    #signup-custom-eye{
+      position: absolute !important;
+      right: 50px !important;
+      top: 250px !important;
+      cursor: pointer !important;
+      background: red !important;
+    }
+
     /* Profile */
 
     body {

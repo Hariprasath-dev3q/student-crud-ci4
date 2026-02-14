@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-12 13:35:43
+/* Smarty version 5.7.0, created on 2026-02-14 05:41:50
   from 'file:studentForm.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_698dd72fd757f5_68407952',
+  'unifunc' => 'content_69900b1eee8d76_62062178',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f37549180ef77cc7dd0cc1f079de923a82fceba0' => 
     array (
       0 => 'studentForm.tpl',
-      1 => 1770903340,
+      1 => 1771047581,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_698dd72fd757f5_68407952 (\Smarty\Template $_smarty_tpl) {
+function content_69900b1eee8d76_62062178 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html>
@@ -47,7 +47,7 @@ $_smarty_tpl->configLoad("config.tpl", null);
  src="<?php echo $_smarty_tpl->getValue('base_url');?>
 js/student-form.js"><?php echo '</script'; ?>
 >
-   <?php echo '<script'; ?>
+  <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->getValue('base_url');?>
 js/student-management.js"><?php echo '</script'; ?>
 >
@@ -61,17 +61,17 @@ css/style.css" rel="stylesheet">
   <?php $_smarty_tpl->renderSubTemplate("file:studentHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
   <sidebar>
-      <div class="list-group">
-        <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
+    <div class="list-group">
+      <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
 studentform/" class="list-group-item list-group-item-action active" aria-current="true">
-          <i class="fa-solid fa-user-plus"></i> Add student
-        </a>
-        <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
+        <i class="fa-solid fa-user-plus"></i> Add student
+      </a>
+      <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
 insertData/display" class="list-group-item list-group-item-action">
-          <i class="fa-solid fa-file-import"></i>Import file</a>
+        <i class="fa-solid fa-file-import"></i>Import file</a>
 
-      </div>
-    </sidebar>
+    </div>
+  </sidebar>
   <div
     class="container main-content bg-secondary bg-gradient bg-opacity-50 custom-form rounded w-50 shadow p-3 mb-5 bg-body rounded mt-3"
     id="myForm">
@@ -225,6 +225,31 @@ insertData/display" class="list-group-item list-group-item-action">
 
       <div class="mb-3 row">
         <div class="col">
+          <label for="teacher_name">Teacher Name : </label>
+        </div>
+        <div class="col-8">
+          <select name="teacher_id" id="teacher_id" class="form-select" required>
+            <option value="">Select Teacher</option>
+            <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('teachers'), 'teacher');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('teacher')->value) {
+$foreach0DoElse = false;
+?>
+            <option value="<?php echo $_smarty_tpl->getValue('teacher')['staffId'];?>
+">
+              <?php echo $_smarty_tpl->getValue('teacher')['teacherName'];?>
+
+            </option>
+            <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <div class="col">
           <label for="studentPic" class="form-label">Student photo : </label>
         </div>
                 <div class="col-8">
@@ -233,7 +258,7 @@ insertData/display" class="list-group-item list-group-item-action">
 echo $_smarty_tpl->getValue('base_url');
 echo $_smarty_tpl->getValue('item')['file'];
 }?>" alt="No Student Pic"
-              class="customImg" style="width:100px; height:100px;<?php if (( !true || empty($_smarty_tpl->getValue('item')['file']))) {?>display:none;<?php }?>" >
+              class="customImg" style="width:100px; height:100px;<?php if (( !true || empty($_smarty_tpl->getValue('item')['file']))) {?>display:none;<?php }?>">
 
             <button type="button" class="customBtn" title="delete"
               style="border:none; background:transparent;<?php if (( !true || empty($_smarty_tpl->getValue('item')['file']))) {?>display:none;<?php }?>">

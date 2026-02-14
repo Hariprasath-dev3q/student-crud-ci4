@@ -125,7 +125,7 @@
   <div class="container-fluid ">
     <sidebar>
       <div class="list-group">
-        <a href="{$base_url}studentform/" class="list-group-item list-group-item-action active" aria-current="true">
+        <a href="{$base_url}studentform/display" class="list-group-item list-group-item-action active" aria-current="true">
           <i class="fa-solid fa-user-plus"></i> Add student
         </a>
         <a href="{$base_url}insertData/display" class="list-group-item list-group-item-action">

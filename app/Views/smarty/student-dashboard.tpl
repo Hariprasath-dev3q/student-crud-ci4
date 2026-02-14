@@ -21,6 +21,7 @@
     console.log("Base URL:", base_url);
   </script>
   <script src="{$base_url}js/student-management.js"></script>
+  <script src="{$base_url}js/student-form.js"></script>
   <link href="{$base_url}css/style.css" rel="stylesheet">
 
   {* <style>
@@ -77,18 +78,28 @@
 <body>
   {include file="studentHeader.tpl"}
   <sidebar>
-      <div class="list-group">
-        <a href="{$base_url}studentform/" class="list-group-item list-group-item-action active" aria-current="true">
-          <i class="fa-solid fa-user-plus"></i> Add student
-        </a>
-        <a href="{$base_url}insertData/display" class="list-group-item list-group-item-action">
-          <i class="fa-solid fa-file-import"></i>Import file</a>
+    <div class="list-group">
+      <a href="{$base_url}studentform/display" class="list-group-item list-group-item-action active"
+        aria-current="true">
+        <i class="fa-solid fa-user-plus"></i> Add student
+      </a>
+      <a href="{$base_url}insertData/display" class="list-group-item list-group-item-action">
+        <i class="fa-solid fa-file-import"></i>Import file</a>
 
-      </div>
-    </sidebar>
+    </div>
+  </sidebar>
   <div class="container mt-5 main-content">
 
-    <h2>Welcome to the Student Dashboard {$studentData.fname|default:"Guest"}</h2>
+    <h2>Welcome, {$studentData.teacherName|default:"Guest"}</h2>
+
+    <div class="card mt-3" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Your ID: {$studentData.staffId}</h5>
+        <p class="card-text"><i class="fa-solid fa-users"></i> Total Students: {$studentCount}</p>
+        <p class="card-text"><i class="fa-solid fa-person" style="color:lightblue;"></i> Total Boys: {$gender.male_count}</p>
+        <p class="card-text"><i class="fa-solid fa-person-dress" style="color:pink;"></i> Total Girls: {$gender.female_count}</p>
+      </div>
+    </div>
   </div>
 </body>
 

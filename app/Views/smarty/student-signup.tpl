@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Signup</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -22,7 +22,7 @@
     console.log("Base URL:", base_url);
   </script>
   <script src="{$base_url}js/student-management.js"></script>
- <link href="{$base_url}css/style.css" rel="stylesheet">
+  <link href="{$base_url}css/style.css" rel="stylesheet">
 
   {* <style>
     .login-form {
@@ -34,7 +34,7 @@
     }
 
     #password{
-      
+
     }
     .custom-eye{
       position: absolute;
@@ -43,31 +43,34 @@
       cursor: pointer;
     }
   </style> *}
- 
+
 </head>
 
 <body>
   <div class="container mt-5 w-25 login-form">
-    <h2 class="mb-4 text-center">Student Login</h2>
-    <form action="/studentform/login" method="post" id="loginForm">
+    <h2 class="mb-4 text-center">Staff Signup</h2>
+    <form action="/student/login" method="post" id="loginForm">
+      <div class="mb-3">
+        <label for="email" class="form-label">Teacher Name</label>
+        <input type="text" class="form-control" id="teachername" name="teachername" value="" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Create Password</label>
+        <input type="password" class="form-control" id="password" name="password" maxlength="8" required>
+        <i class="fa-solid fa-eye " id="custom-eye"></i>
+      </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input type="email" class="form-control" id="email" name="email" value="{$cookieEmail|default: ''}" required>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password" maxlength="8" required>
-        <i class="fa-solid fa-eye " id="custom-eye"></i>
-        
-      </div>
-      <div class="form-check mb-3">
+      {* <div class="form-check mb-3">
         <input type="checkbox" name="remember" id="remember" class="form-check-input" />
         <label for="remember" class="form-check-label">Remember me</label>
+      </div> *}
+      <div class="mb-3">Already have an account?
+        <a href="{$base_url}" class="">Login</a>
       </div>
-      <div class="mb-3">Don't you have a account?
-        <a href="{$base_url}studentAuth/signup" class="">Signup</a>
-      </div>
-      <button type="button" class="btn btn-primary" onclick="studentLogin(event)">Login</button>
+      <button type="button" class="btn btn-primary" onclick="studentSignup(event)">Signup</button>
       <span id="loginError" class="text-danger ms-3">{$error}</span>
     </form>
 

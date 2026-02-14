@@ -97,6 +97,75 @@ function studentLogin(e) {
   });
 }
 
+function studentSignup(e) {
+  e.preventDefault();
+  var isValid = true;
+  const email = $("#email").val().trim();
+  const password = $("#password").val().trim();
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  $("#feedback").removeClass("alert alert-success alert-danger").text("");
+  $("#email, #password").css("border", "");
+
+  let teacherName = $("#teachername").val();
+
+  if (!teacherName) {
+    $("#teachername").css("border", "1px solid red");
+    showError("Please select a teacher.");
+    isValid = false;
+  } else {
+    $("#teachername").css("border", "1px solid green");
+  }
+
+  if (!emailPattern.test(email)) {
+    $("#email").css("border", "1px solid red");
+    showError("Please enter a valid email.");
+    isValid = false;
+  } else {
+    $("#email").css("border", "1px solid green");
+  }
+
+  if (password.length < 5) {
+    $("#password").css("border", "1px solid red");
+    showError("Password must be at least 5 characters.");
+    isValid = false;
+    return;
+  } else {
+    $("#password").css("border", "1px solid green");
+  }
+
+  if (!isValid) {
+    return;
+  }
+
+  $.ajax({
+    url: base_url + "studentAuth/signup",
+    method: "POST",
+    dataType: "json",
+    data: {
+      email: email,
+      password: password,
+      teacherName: teacherName,
+    },
+    success: function (response) {
+      console.log(response);
+      //return;
+      if (response.status === 1) {
+        showSuccess("Signup successful...");
+        setTimeout(function () {
+          window.location.href = base_url + "/";
+        }, 1000);
+      } else {
+        showError(response.message);
+      }
+    },
+    error: function () {
+      showError("Something went wrong. Try again.");
+    },
+  });
+}
+
 function logout(e) {
   e.preventDefault();
   console.log("Logout clicked");
@@ -111,3 +180,5 @@ function logout(e) {
     },
   });
 }
+
+

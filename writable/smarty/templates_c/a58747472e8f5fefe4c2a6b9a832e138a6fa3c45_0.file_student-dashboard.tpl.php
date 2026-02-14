@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-12 10:34:18
+/* Smarty version 5.7.0, created on 2026-02-14 07:56:26
   from 'file:student-dashboard.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_698dacaa4ae146_78535025',
+  'unifunc' => 'content_69902aaa852d21_19891100',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a58747472e8f5fefe4c2a6b9a832e138a6fa3c45' => 
     array (
       0 => 'student-dashboard.tpl',
-      1 => 1770892298,
+      1 => 1771055783,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_698dacaa4ae146_78535025 (\Smarty\Template $_smarty_tpl) {
+function content_69902aaa852d21_19891100 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -56,6 +56,10 @@ $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
  src="<?php echo $_smarty_tpl->getValue('base_url');?>
 js/student-management.js"><?php echo '</script'; ?>
 >
+  <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->getValue('base_url');?>
+js/student-form.js"><?php echo '</script'; ?>
+>
   <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
 css/style.css" rel="stylesheet">
 
@@ -66,21 +70,35 @@ css/style.css" rel="stylesheet">
   <?php $_smarty_tpl->renderSubTemplate("file:studentHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
   <sidebar>
-      <div class="list-group">
-        <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
-studentform/" class="list-group-item list-group-item-action active" aria-current="true">
-          <i class="fa-solid fa-user-plus"></i> Add student
-        </a>
-        <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
+    <div class="list-group">
+      <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
+studentform/display" class="list-group-item list-group-item-action active"
+        aria-current="true">
+        <i class="fa-solid fa-user-plus"></i> Add student
+      </a>
+      <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
 insertData/display" class="list-group-item list-group-item-action">
-          <i class="fa-solid fa-file-import"></i>Import file</a>
+        <i class="fa-solid fa-file-import"></i>Import file</a>
 
-      </div>
-    </sidebar>
+    </div>
+  </sidebar>
   <div class="container mt-5 main-content">
 
-    <h2>Welcome to the Student Dashboard <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['fname'] ?? null)===null||$tmp==='' ? "Guest" ?? null : $tmp);?>
+    <h2>Welcome, <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacherName'] ?? null)===null||$tmp==='' ? "Guest" ?? null : $tmp);?>
 </h2>
+
+    <div class="card mt-3" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Your ID: <?php echo $_smarty_tpl->getValue('studentData')['staffId'];?>
+</h5>
+        <p class="card-text"><i class="fa-solid fa-users"></i> Total Students: <?php echo $_smarty_tpl->getValue('studentCount');?>
+</p>
+        <p class="card-text"><i class="fa-solid fa-person" style="color:lightblue;"></i> Total Boys: <?php echo $_smarty_tpl->getValue('gender')['male_count'];?>
+</p>
+        <p class="card-text"><i class="fa-solid fa-person-dress" style="color:pink;"></i> Total Girls: <?php echo $_smarty_tpl->getValue('gender')['female_count'];?>
+</p>
+      </div>
+    </div>
   </div>
 </body>
 

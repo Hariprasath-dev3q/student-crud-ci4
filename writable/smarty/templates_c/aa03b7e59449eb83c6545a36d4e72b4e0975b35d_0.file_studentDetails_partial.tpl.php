@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-12 11:48:00
+/* Smarty version 5.7.0, created on 2026-02-14 05:34:52
   from 'file:studentDetails_partial.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_698dbdf08ff0c4_86181662',
+  'unifunc' => 'content_6990097c72c580_21947585',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aa03b7e59449eb83c6545a36d4e72b4e0975b35d' => 
     array (
       0 => 'studentDetails_partial.tpl',
-      1 => 1770896833,
+      1 => 1771047289,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_698dbdf08ff0c4_86181662 (\Smarty\Template $_smarty_tpl) {
+function content_6990097c72c580_21947585 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><input type="hidden" id="current-page" value="<?php echo $_smarty_tpl->getValue('pager')->getCurrentPage();?>
 " />
@@ -38,6 +38,8 @@ $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
       <th scope="col">Gender</th>
       <th scope="col">Department</th>
       <th scope="col">Course</th>
+      <th scope="col">TeacherID</th>
+      <th scope="col">TeacherName</th>
       <th scope="col">File</th>
       <th scope="col">City</th>
       <th scope="col">Address</th>
@@ -83,6 +85,10 @@ $foreach0DoElse = false;
           <td><?php echo $_smarty_tpl->getValue('item')['department'];?>
 </td>
           <td><?php echo $_smarty_tpl->getValue('item')['course'];?>
+</td>
+          <td><?php echo $_smarty_tpl->getValue('item')['teacher_id'];?>
+</td>
+          <td><?php echo $_smarty_tpl->getValue('item')['teacher_name'];?>
 </td>
           <td><img src="<?php echo $_smarty_tpl->getValue('base_url');
 echo $_smarty_tpl->getValue('item')['file'];?>

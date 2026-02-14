@@ -33,9 +33,7 @@ class InsertData extends BaseController
     $this->smarty->assign('no_data', "No Data Found!");
   }
 
-  /* ============================================================
-       Validate DOB
-    ============================================================ */
+
   public function validateDob($dob)
   {
     if ($dob === null || $dob === '') {
@@ -72,9 +70,7 @@ class InsertData extends BaseController
     return false;
   }
 
-  /* ============================================================
-       Import Excel
-    ============================================================ */
+
   public function importExcel()
   {
     $file = $this->request->getFile('excelFile');
@@ -204,7 +200,7 @@ class InsertData extends BaseController
 
     try {
       $this->redis->flushAll();
-      $this->redis->delete('user', 'page_' . $page);
+      $this->redis->delete('user_', 'page_' . $page);
       $this->model->insertItem($data);
       $this->redis->clearNamespace('user_');
 
@@ -216,9 +212,6 @@ class InsertData extends BaseController
     }
   }
 
-  /* ============================================================
-       Sample Excel Download
-    ============================================================ */
   public function sampleExcel()
   {
     $fileName = 'sample-excel-' . date('Ymd_His') . '.xlsx';
@@ -364,7 +357,7 @@ class InsertData extends BaseController
       ->setBody($fileContent);
   }
 
- 
+
   public function deleteMultiple()
   {
     $ids = $this->request->getVar('ids');
@@ -391,7 +384,7 @@ class InsertData extends BaseController
     if (!$isLoggedIn) {
       return redirect()->to('/');
     }
-    
+
     $studentData = session()->get('studentData');
     $page = $this->request->getGet('page') ?? 1;
 

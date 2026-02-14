@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-12 12:38:43
+/* Smarty version 5.7.0, created on 2026-02-13 11:46:33
   from 'file:studentFormDetails.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_698dc9d3c13954_62672167',
+  'unifunc' => 'content_698f0f190f1967_95564129',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '64cc7a6ca88a22c7250eb3291695e7ee3ca7c84b' => 
     array (
       0 => 'studentFormDetails.tpl',
-      1 => 1770899910,
+      1 => 1770972520,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentFormDetails_partial.tpl' => 1,
   ),
 ))) {
-function content_698dc9d3c13954_62672167 (\Smarty\Template $_smarty_tpl) {
+function content_698f0f190f1967_95564129 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html>
@@ -72,7 +72,7 @@ css/style.css" rel="stylesheet">
     <sidebar>
       <div class="list-group">
         <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
-studentform/" class="list-group-item list-group-item-action active" aria-current="true">
+studentform/display" class="list-group-item list-group-item-action active" aria-current="true">
           <i class="fa-solid fa-user-plus"></i> Add student
         </a>
         <a href="<?php echo $_smarty_tpl->getValue('base_url');?>

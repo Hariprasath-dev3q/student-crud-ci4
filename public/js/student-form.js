@@ -97,15 +97,21 @@ async function submitData(e) {
       .get()
       .join(", "),
     course: $("#multiSelect").val(),
+    teacherId: $("#teacher_id").val().trim(),
+    teacherName: $("#teacher_id option:selected").text().trim(),
     studentPic: base64Img,
     old_file: $("input[name='old_file']").val() || null,
     city: $("#city").val(),
     address: $("#address").val(),
   };
-
+  // console.log("Teacher ID:", $("#teacher_id").val());
+  // console.log("Teacher Name:", $("#teacher_id option:selected").text());
+  // console.log("Full data object:", data);
+  // return;
   const editId = $("#edit_id").val();
   if (editId) data.editId = editId;
-
+  // console.log('ddd');
+  // return;
   $.ajax({
     url: base_url + "studentform/save-items",
     method: "POST",
@@ -115,7 +121,7 @@ async function submitData(e) {
       setSuccess(res.message);
       setTimeout(() => {
         window.location.href = base_url + "studentform/display";
-      }, 2000);
+      }, 1000);
     },
     error: (err) => console.error(err),
   });
@@ -202,6 +208,26 @@ function exportDataJS() {
       aTag.remove();
 
       window.URL.revokeObjectURL(url);
+    },
+  });
+}
+
+function searchTeacherByName(e) {
+  e.preventDefault();
+  console.log("onchange search");
+
+  var staffName = $("#searchTeacherName").val().trim();
+  data = {};
+  data.staffName = staffName;
+  $.ajax({
+    url: base_url + "studentform/display/teacher",
+    type: "GET",
+    data: data,
+    success: function (response) {
+      $("#student-container").html(response);
+    },
+    error: function (err) {
+      console.error("Search error:", err);
     },
   });
 }

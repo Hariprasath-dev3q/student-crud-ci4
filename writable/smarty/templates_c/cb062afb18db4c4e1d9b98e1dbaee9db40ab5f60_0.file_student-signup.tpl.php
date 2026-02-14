@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-13 09:03:02
-  from 'file:student-login.tpl' */
+/* Smarty version 5.7.0, created on 2026-02-14 06:26:37
+  from 'file:student-signup.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_698ee8c6e76ea2_41311079',
+  'unifunc' => 'content_6990159d917762_74429166',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '2d2330f7061bebe03dc66625aff4ed57737156f7' => 
+    'cb062afb18db4c4e1d9b98e1dbaee9db40ab5f60' => 
     array (
-      0 => 'student-login.tpl',
-      1 => 1770973377,
+      0 => 'student-signup.tpl',
+      1 => 1771043918,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_698ee8c6e76ea2_41311079 (\Smarty\Template $_smarty_tpl) {
+function content_6990159d917762_74429166 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@ $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <title>Signup</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <?php echo '<script'; ?>
@@ -57,36 +57,35 @@ css/style.css">
  src="<?php echo $_smarty_tpl->getValue('base_url');?>
 js/student-management.js"><?php echo '</script'; ?>
 >
- <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
+  <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
 css/style.css" rel="stylesheet">
 
-   
+  
 </head>
 
 <body>
   <div class="container mt-5 w-25 login-form">
-    <h2 class="mb-4 text-center">Student Login</h2>
-    <form action="/studentform/login" method="post" id="loginForm">
+    <h2 class="mb-4 text-center">Staff Signup</h2>
+    <form action="/student/login" method="post" id="loginForm">
+      <div class="mb-3">
+        <label for="email" class="form-label">Teacher Name</label>
+        <input type="text" class="form-control" id="teachername" name="teachername" value="" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Create Password</label>
+        <input type="password" class="form-control" id="password" name="password" maxlength="8" required>
+        <i class="fa-solid fa-eye " id="custom-eye"></i>
+      </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input type="email" class="form-control" id="email" name="email" value="<?php echo (($tmp = $_smarty_tpl->getValue('cookieEmail') ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
 " required>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password" maxlength="8" required>
-        <i class="fa-solid fa-eye " id="custom-eye"></i>
-        
-      </div>
-      <div class="form-check mb-3">
-        <input type="checkbox" name="remember" id="remember" class="form-check-input" />
-        <label for="remember" class="form-check-label">Remember me</label>
-      </div>
-      <div class="mb-3">Don't you have a account?
+            <div class="mb-3">Already have an account?
         <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
-studentAuth/signup" class="">Signup</a>
+" class="">Login</a>
       </div>
-      <button type="button" class="btn btn-primary" onclick="studentLogin(event)">Login</button>
+      <button type="button" class="btn btn-primary" onclick="studentSignup(event)">Signup</button>
       <span id="loginError" class="text-danger ms-3"><?php echo $_smarty_tpl->getValue('error');?>
 </span>
     </form>

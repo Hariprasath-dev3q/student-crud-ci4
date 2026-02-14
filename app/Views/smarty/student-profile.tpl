@@ -21,6 +21,7 @@
     console.log("Base URL:", base_url);
   </script>
   <script src="{$base_url}js/student-management.js"></script>
+  <script src="{$base_url}js/student-form.js"></script>
 
   {* <style>
     body {
@@ -99,7 +100,7 @@
   <div class="container-fluid mt-5 main-content">
   <sidebar>
       <div class="list-group">
-        <a href="{$base_url}studentform/" class="list-group-item list-group-item-action active" aria-current="true">
+        <a href="{$base_url}studentform/display" class="list-group-item list-group-item-action active" aria-current="true">
           <i class="fa-solid fa-user-plus"></i> Add student
         </a>
         <a href="{$base_url}insertData/display" class="list-group-item list-group-item-action">
@@ -119,8 +120,11 @@
             <img src="{$base_url}images/img2.jpg" alt="Profile" class="rounded-circle me-2 custom-header-img mt-2 mb-2"
               style="width: 60px; height: 60px;">
             <div class="row">
-              <div class="col-md-6">
+              {* <div class="col-md-6">
                 <p class="text-black"><span class="label text-black">Student Name:</span> {$studentData.fname|default:'N/A'} {$studentData.lname|default:'N/A'}</p>
+              </div> *}
+              <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Student Name:</span> {$studentData.teacherName|default:'N/A'}</p>
               </div>
               <div class="col-md-6">
                 <p class="text-black"><span class="label text-black">Father's Name:</span> {$studentData.father_name|default:'N/A'}</p>

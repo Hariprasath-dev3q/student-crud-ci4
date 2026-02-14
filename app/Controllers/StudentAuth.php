@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Libraries\Smarty;
 use App\Models\StudentLoginModel;
+use App\Models\StudentFormModel;
 use App\Controllers\BaseController;
 
 class StudentAuth extends BaseController
@@ -12,11 +13,13 @@ class StudentAuth extends BaseController
 
     protected $smarty;
     protected $studentloginmodel;
+    protected StudentFormModel $StudentFormModel;
 
     public function __construct()
     {
         $this->smarty = new Smarty();
         $this->studentloginmodel = new StudentLoginModel();
+        $this->StudentFormModel = new StudentFormModel();
         $this->smarty->assign('base_url', base_url());
     }
 
@@ -36,6 +39,7 @@ class StudentAuth extends BaseController
         $remember = $this->request->getVar('remember');
 
         $isVerified = $this->studentloginmodel->verifyLogin($email, $password);
+
         if ($isVerified === false) {
 
             if ($this->request->isAJAX()) {
@@ -71,6 +75,28 @@ class StudentAuth extends BaseController
         }
     }
 
+    public function signup()
+    {
+        return $this->smarty->display('student-signup.tpl');
+    }
+
+    public function staffSignup()
+    {
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
+        $teacherName = $this->request->getVar('teacherName');
+        $result = $this->studentloginmodel->staffSignup($email, $password, $teacherName);
+        if ($result) {
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'status' => 1
+                ]);
+            }
+            return redirect()->to('/studentAuth/userLogin');
+        }
+        return $this->smarty->display('student-signup.tpl');
+    }
+
 
     public function dashboard()
     {
@@ -79,8 +105,15 @@ class StudentAuth extends BaseController
             return redirect()->to('/');
         }
         $studentData = session()->get('studentData');
+        $studentCount = $this->StudentFormModel->getStudentCount($studentData['staffId']);
+        // $genderCount = $this->StudentFormModel->genderCountById($student);
 
+        log_message('debug', 'Dashboard studentData: ' . print_r($studentData, true));
+        $gender = $this->StudentFormModel->genderCountById($studentData['staffId']);
+        log_message('debug', 'Dashboard gender: ' . print_r($gender, true));
+        $this->smarty->assign('gender', $gender);
         $this->smarty->assign('studentData', $studentData);
+        $this->smarty->assign('studentCount', $studentCount);
 
         return $this->smarty->display('student-dashboard.tpl');
     }
@@ -91,15 +124,4 @@ class StudentAuth extends BaseController
         $this->response->deleteCookie('remember_email', '', '/');
         return redirect()->to('/');
     }
-
-    // public function profile()
-    // {
-    //     $isLoggedIn = session()->get('isLoggedIn');
-    //     if (!$isLoggedIn) {
-    //         return redirect()->to('/studentAuth/login');
-    //     }
-    //     $studentData = session()->get('studentData');
-    //     $this->smarty->assign('studentData', $studentData);
-    //     return $this->smarty->display('student-profile.tpl');
-    // }
 }

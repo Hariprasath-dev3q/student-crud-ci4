@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Libraries\Smarty;
 use App\Models\StudentFormModel;
+use App\Models\StudentLoginModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Controllers\BaseController;
 use stdClass;
@@ -11,6 +12,7 @@ use stdClass;
 class StudentForm extends BaseController
 {
   protected StudentFormModel $StudentFormModel;
+  protected StudentLoginModel $StudentLoginModel;
   protected $smarty;
   protected $message;
   protected $redis;
@@ -19,6 +21,7 @@ class StudentForm extends BaseController
   public function __construct()
   {
     $this->StudentFormModel = new StudentFormModel();
+    $this->StudentLoginModel = new StudentLoginModel();
     $this->smarty = new Smarty();
     $this->message = new stdClass();
     $this->message->status = 0;
@@ -63,6 +66,9 @@ class StudentForm extends BaseController
     $item->address = '';
     $item->id = '';
 
+    $teachers = $this->StudentLoginModel->getallStaffs();
+
+    $this->smarty->assign('teachers', $teachers);
     $this->smarty->assign('studentData', $studentData);
     $this->smarty->assign('item', (array)$item);
     return $this->smarty->display('studentForm.tpl');
@@ -117,6 +123,23 @@ class StudentForm extends BaseController
 
     return $this->smarty->display('studentDetails.tpl');
   }
+
+  public function getItemsByTeacherName()
+  {
+    $staffName = $this->request->getVar('staffName');
+
+    $data = $this->StudentFormModel->getItemsByTeacher($staffName);
+
+    $this->smarty->assign('items', $data['items']);
+    $this->smarty->assign('pager', $data['pager']);
+
+    if ($this->request->isAJAX()) {
+      return $this->smarty->fetch('studentDetails_partial.tpl');
+    }
+
+    return $this->smarty->display('studentDetails.tpl');
+  }
+
 
   public function editItem($id)
   {
@@ -194,6 +217,8 @@ class StudentForm extends BaseController
         'gender' => 'required|in_list[male,female]|trim',
         'department' => 'required',
         'course' => 'required',
+        // 'teacherId' => 'required',
+        // 'teacherName' => 'required',
         'file' => 'permit_empty|uploaded[file]|max_size[file,2048]|is_image[file]',
         'city' => 'required|max_length[35]|trim',
         'address' => 'required|max_length[70]|trim',
@@ -211,6 +236,8 @@ class StudentForm extends BaseController
         'gender' => $json->gender ?? '',
         'department' => $json->department ?? '',
         'course' => $json->course ?? '',
+        'teacherId' => $json->teacherId ?? '',
+        'teacherName' => $json->teacherName ?? '',
         'city' => $json->city ?? '',
         'address' => $json->address ?? '',
       ];
@@ -246,7 +273,7 @@ class StudentForm extends BaseController
         }
       }
 
-      $oldFile = $this->old_file ?? null;
+      $oldFile = $json->old_file ?? null;
 
       // Check if it's an update or insert
       if (!empty($json->editId)) {
@@ -263,23 +290,30 @@ class StudentForm extends BaseController
           'gender'      => $data['gender'],
           'department'  => $data['department'],
           'course'      => $data['course'],
+          'teacher_id'      => $data['teacherId'],
+          'teacher_name'      => $data['teacherName'],
           'city'        => $data['city'],
           'address'     => $data['address'],
         ];
 
-        if (!empty($fileName)) {
-          $updateData['file'] = $fileName;
-        }
-        if (!empty($oldFile)) {
 
-          if (!empty($fileName) && is_file(FCPATH . $fileName)) {
-            unlink(FCPATH . $fileName);
+        if (!empty($fileName)) {
+
+          if (!empty($oldFile) && is_file(FCPATH . $oldFile)) {
+            unlink(FCPATH . $oldFile);
           }
+          $updateData['file'] = $fileName;
+        } else if (!empty($oldFile)) {
+
           $updateData['file'] = $oldFile;
         }
 
         $this->StudentFormModel->updateItemById($json->editId, $updateData);
-        $this->fileCache->delete('student_list');
+
+        for ($i = 1; $i <= 100; $i++) {
+          $this->fileCache->delete('student_list' . $i);
+        }
+
         return $this->response->setJSON([
           'status' => 1,
           'message' => 'Record updated successfully'
@@ -298,12 +332,17 @@ class StudentForm extends BaseController
           'gender'      => $data['gender'],
           'department'  => $data['department'],
           'course'      => $data['course'],
+          'teacher_id'      => $data['teacherId'],
+          'teacher_name'      => $data['teacherName'],
           'file'        => $fileName,
           'city'        => $data['city'],
           'address'     => $data['address'],
         ]);
-        $page = $this->request->getVar('page') ?? 1;
-        $this->fileCache->delete('student_list' . $page);
+
+        // Clear all possible cache pages to ensure fresh data
+        for ($i = 1; $i <= 100; $i++) {
+          $this->fileCache->delete('student_list' . $i);
+        }
         return $this->response->setJSON([
           'status' => 1,
           'message' => 'Student registered successfully'
@@ -315,5 +354,10 @@ class StudentForm extends BaseController
         'message' => 'An error occurred: ' . $e->getMessage()
       ]);
     }
+  }
+
+  public function signp()
+  {
+    $this->smarty->display('student-signup.tpl');
   }
 }

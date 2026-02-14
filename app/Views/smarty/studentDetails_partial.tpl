@@ -13,6 +13,8 @@
       <th scope="col">Gender</th>
       <th scope="col">Department</th>
       <th scope="col">Course</th>
+      <th scope="col">TeacherID</th>
+      <th scope="col">TeacherName</th>
       <th scope="col">File</th>
       <th scope="col">City</th>
       <th scope="col">Address</th>
@@ -41,6 +43,8 @@
           <td>{$item.gender}</td>
           <td>{$item.department}</td>
           <td>{$item.course}</td>
+          <td>{$item.teacher_id}</td>
+          <td>{$item.teacher_name}</td>
           <td><img src="{$base_url}{$item.file}" alt="item Image"></td>
           <td>{$item.city}</td>
           <td>{$item.address}</td>

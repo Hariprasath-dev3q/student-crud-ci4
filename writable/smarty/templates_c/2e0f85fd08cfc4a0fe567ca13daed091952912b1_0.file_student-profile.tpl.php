@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-12 10:30:57
+/* Smarty version 5.7.0, created on 2026-02-13 13:19:14
   from 'file:student-profile.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_698dabe1c2d7d7_82959895',
+  'unifunc' => 'content_698f24d2072078_99113640',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2e0f85fd08cfc4a0fe567ca13daed091952912b1' => 
     array (
       0 => 'student-profile.tpl',
-      1 => 1770891610,
+      1 => 1770988751,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_698dabe1c2d7d7_82959895 (\Smarty\Template $_smarty_tpl) {
+function content_698f24d2072078_99113640 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -69,7 +69,7 @@ css/style.css" rel="stylesheet">
   <sidebar>
       <div class="list-group">
         <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
-studentform/" class="list-group-item list-group-item-action active" aria-current="true">
+studentform/display" class="list-group-item list-group-item-action active" aria-current="true">
           <i class="fa-solid fa-user-plus"></i> Add student
         </a>
         <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
@@ -91,9 +91,8 @@ insertData/display" class="list-group-item list-group-item-action">
 images/img2.jpg" alt="Profile" class="rounded-circle me-2 custom-header-img mt-2 mb-2"
               style="width: 60px; height: 60px;">
             <div class="row">
-              <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Student Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['fname'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
- <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['lname'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
+                            <div class="col-md-6">
+                <p class="text-black"><span class="label text-black">Student Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacherName'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
 </p>
               </div>
               <div class="col-md-6">
