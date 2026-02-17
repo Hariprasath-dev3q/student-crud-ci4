@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-14 05:34:52
+/* Smarty version 5.7.0, created on 2026-02-17 13:06:27
   from 'file:studentDetails_partial.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_6990097c72c580_21947585',
+  'unifunc' => 'content_699467d3584908_73897048',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aa03b7e59449eb83c6545a36d4e72b4e0975b35d' => 
     array (
       0 => 'studentDetails_partial.tpl',
-      1 => 1771047289,
+      1 => 1771333523,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,11 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6990097c72c580_21947585 (\Smarty\Template $_smarty_tpl) {
+function content_699467d3584908_73897048 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><input type="hidden" id="current-page" value="<?php echo $_smarty_tpl->getValue('pager')->getCurrentPage();?>
 " />
-<table class="table bordercurrent-page border-dark table-responsive custom-scroll">
+<table class="table bordercurrent-page border-dark table-responsive custom-scroll" id="studentTable">
   <thead class="table-success text-nowrap">
     <tr class="">
       <th scope="col">S.No</th>

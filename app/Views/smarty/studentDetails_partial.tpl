@@ -1,5 +1,5 @@
 <input type="hidden" id="current-page" value="{$pager->getCurrentPage()}" />
-<table class="table bordercurrent-page border-dark table-responsive custom-scroll">
+<table class="table bordercurrent-page border-dark table-responsive custom-scroll" id="studentTable">
   <thead class="table-success text-nowrap">
     <tr class="">
       <th scope="col">S.No</th>

@@ -48,7 +48,7 @@
 
 <body>
   <div class="container mt-5 w-25 login-form">
-    <h2 class="mb-4 text-center">Student Login</h2>
+    <h2 class="mb-4 text-center">Staff Login</h2>
     <form action="/studentform/login" method="post" id="loginForm">
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
@@ -65,7 +65,7 @@
         <label for="remember" class="form-check-label">Remember me</label>
       </div>
       <div class="mb-3">Don't you have a account?
-        <a href="{$base_url}studentAuth/signup" class="">Signup</a>
+        <a href="{$base_url}staffAuth/signup" class="">Signup</a>
       </div>
       <button type="button" class="btn btn-primary" onclick="studentLogin(event)">Login</button>
       <span id="loginError" class="text-danger ms-3">{$error}</span>

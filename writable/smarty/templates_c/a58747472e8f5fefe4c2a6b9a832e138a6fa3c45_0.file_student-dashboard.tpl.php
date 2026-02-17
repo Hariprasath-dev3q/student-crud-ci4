@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-14 07:56:26
+/* Smarty version 5.7.0, created on 2026-02-17 13:39:57
   from 'file:student-dashboard.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_69902aaa852d21_19891100',
+  'unifunc' => 'content_69946fad3b06c2_35907101',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a58747472e8f5fefe4c2a6b9a832e138a6fa3c45' => 
     array (
       0 => 'student-dashboard.tpl',
-      1 => 1771055783,
+      1 => 1771335594,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_69902aaa852d21_19891100 (\Smarty\Template $_smarty_tpl) {
+function content_69946fad3b06c2_35907101 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -93,9 +93,9 @@ insertData/display" class="list-group-item list-group-item-action">
 </h5>
         <p class="card-text"><i class="fa-solid fa-users"></i> Total Students: <?php echo $_smarty_tpl->getValue('studentCount');?>
 </p>
-        <p class="card-text"><i class="fa-solid fa-person" style="color:lightblue;"></i> Total Boys: <?php echo $_smarty_tpl->getValue('gender')['male_count'];?>
+        <p class="card-text"><i class="fa-solid fa-person" style="color:lightblue;"></i> Total Boys: <?php echo (($tmp = $_smarty_tpl->getValue('gender')['male_count'] ?? null)===null||$tmp==='' ? 0 ?? null : $tmp);?>
 </p>
-        <p class="card-text"><i class="fa-solid fa-person-dress" style="color:pink;"></i> Total Girls: <?php echo $_smarty_tpl->getValue('gender')['female_count'];?>
+        <p class="card-text"><i class="fa-solid fa-person-dress" style="color:pink;"></i> Total Girls: <?php echo (($tmp = $_smarty_tpl->getValue('gender')['female_count'] ?? null)===null||$tmp==='' ? 0 ?? null : $tmp);?>
 </p>
       </div>
     </div>

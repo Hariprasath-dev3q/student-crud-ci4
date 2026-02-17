@@ -96,8 +96,8 @@
       <div class="card-body">
         <h5 class="card-title">Your ID: {$studentData.staffId}</h5>
         <p class="card-text"><i class="fa-solid fa-users"></i> Total Students: {$studentCount}</p>
-        <p class="card-text"><i class="fa-solid fa-person" style="color:lightblue;"></i> Total Boys: {$gender.male_count}</p>
-        <p class="card-text"><i class="fa-solid fa-person-dress" style="color:pink;"></i> Total Girls: {$gender.female_count}</p>
+        <p class="card-text"><i class="fa-solid fa-person" style="color:lightblue;"></i> Total Boys: {$gender.male_count|default:0}</p>
+        <p class="card-text"><i class="fa-solid fa-person-dress" style="color:pink;"></i> Total Girls: {$gender.female_count|default:0}</p>
       </div>
     </div>
   </div>

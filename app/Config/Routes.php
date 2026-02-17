@@ -9,28 +9,44 @@ use App\Controllers\InsertData;
  * @var RouteCollection $routes
  */
 
-$routes->get('/', "StudentAuth::login");
-$routes->group('studentAuth', function ($routes) {
-  $routes->post('userLogin', "StudentAuth::userLogin");
-  $routes->get('dashboard', "StudentAuth::dashboard");
-  $routes->post('logout', "StudentAuth::logout");
-  $routes->get('profile', "StudentAuth::profile");
-  $routes->get('signup', 'StudentAuth::signup');
-  $routes->post('signup', 'StudentAuth::staffSignup');
+$routes->get('/', "StaffAuth::login");
+$routes->group('staffAuth', function ($routes) {
+  $routes->post('userLogin', "StaffAuth::userLogin");
+  $routes->get('dashboard', "StaffAuth::dashboard");
+  $routes->post('logout', "StaffAuth::logout");
+  $routes->get('profile', "StaffAuth::profile");
+  $routes->get('signup', 'StaffAuth::signup');
+  $routes->post('signup', 'StaffAuth::staffSignup');
 });
 
 $routes->group('studentform', function ($routes) {
   $routes->get('/', 'StudentForm::index');
-  $routes->post('userLogin', 'StudentAuth::userLogin');
-  $routes->get('dashboard', "StudentAuth::dashboard");
+  $routes->post('userLogin', 'StaffAuth::userLogin');
+  $routes->get('dashboard', "StaffAuth::dashboard");
   $routes->get('profile', "StudentForm::profile");
   $routes->post('save-items', 'StudentForm::saveItems');
   $routes->get('display', 'StudentForm::getItems');
-  $routes->get('display/teacher', 'StudentForm::getItemsByTeacherName');
+  $routes->get('display/teacher', 'StudentForm::getItemsByName');
   $routes->get('(:num)', 'StudentForm::editItem/$1');
   $routes->post('delete-item', 'StudentForm::deleteItem');
   
 });
+
+// using mock api in postman collection
+$routes->group('students', function($routes){
+  $routes->get('/', "StudentForm::index");
+  $routes->post('/', "StudentForm::store");
+  $routes->put('(:num)', "StudentForm::update/$1");
+  $routes->delete('(:num)', "StudentForm::delete/$1");
+  $routes->get('filter',"StudentForm::filterByTeacher");
+});
+
+$routes->group('auth', function($routes){
+  $routes->post('signup', 'StaffAuth::mock_signup');
+  $routes->post('login', 'StaffAuth::mock_login');
+});
+
+// ******
 
 $routes->group('insertData', function ($routes) {
   $routes->get('display', 'InsertData::displayStudentDetails');

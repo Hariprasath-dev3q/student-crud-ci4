@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-14 07:11:15
+/* Smarty version 5.7.0, created on 2026-02-17 13:36:29
   from 'file:studentDetails.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_6990201330de69_41734738',
+  'unifunc' => 'content_69946edd031952_64856077',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8df59eb9aa2969bfa8d716b6eefc5fbec82753b2' => 
     array (
       0 => 'studentDetails.tpl',
-      1 => 1771052874,
+      1 => 1771334553,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentDetails_partial.tpl' => 1,
   ),
 ))) {
-function content_6990201330de69_41734738 (\Smarty\Template $_smarty_tpl) {
+function content_69946edd031952_64856077 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html>
@@ -90,8 +90,7 @@ insertData/display" class="list-group-item list-group-item-action">
 " class="btn btn-primary mb-3 text-decoration-none text-white">Add User</a>
       </div>
       <div class="input-group ms-3 mb-3 w-25">
-        <input type="text" class="form-control" id="searchTeacherName" name="searchTeacherName" placeholder="Search" aria-label="Username"
-          aria-describedby="basic-addon1" onchange="searchTeacherByName(event)" >
+        <input type="text" class="form-control" id="globalSearchData" name="globalSearchData" placeholder="Search" onkeyup="globalSearch()" >
       </div>
     </div>
   </div>

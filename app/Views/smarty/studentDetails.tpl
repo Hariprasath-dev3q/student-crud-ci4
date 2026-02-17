@@ -132,8 +132,7 @@
         <a href="{$addUserUrl}" class="btn btn-primary mb-3 text-decoration-none text-white">Add User</a>
       </div>
       <div class="input-group ms-3 mb-3 w-25">
-        <input type="text" class="form-control" id="searchTeacherName" name="searchTeacherName" placeholder="Search" aria-label="Username"
-          aria-describedby="basic-addon1" onchange="searchTeacherByName(event)" >
+        <input type="text" class="form-control" id="globalSearchData" name="globalSearchData" placeholder="Search" onkeyup="globalSearch()" >
       </div>
     </div>
   </div>

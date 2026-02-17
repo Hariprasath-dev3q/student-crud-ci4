@@ -5,7 +5,7 @@ $(document).ready(function () {
 
   $(".custom-eye").on("mouseleave", function () {
     $("#password").attr("type", "password");
-  });
+  }); 
 
   $(document).on("click", "#custom-eye", function () {
     const passwordInput = $("#password");
@@ -72,7 +72,8 @@ function studentLogin(e) {
   }
 
   $.ajax({
-    url: base_url + "studentAuth/userLogin",
+    url: base_url + "staffAuth/userLogin",
+    // url: base_url + "auth/login",
     method: "POST",
     dataType: "json",
     data: {
@@ -85,7 +86,7 @@ function studentLogin(e) {
       if (response.status === 1) {
         showSuccess("Login successful...");
         setTimeout(function () {
-          window.location.href = base_url + "studentAuth/dashboard";
+          window.location.href = base_url + "staffAuth/dashboard";
         }, 1000);
       } else {
         showError(response.message);
@@ -140,7 +141,8 @@ function studentSignup(e) {
   }
 
   $.ajax({
-    url: base_url + "studentAuth/signup",
+    url: base_url + "staffAuth/signup",
+    // url: base_url + "auth/signup",
     method: "POST",
     dataType: "json",
     data: {
@@ -170,10 +172,10 @@ function logout(e) {
   e.preventDefault();
   console.log("Logout clicked");
   $.ajax({
-    url: base_url + "studentAuth/logout",
+    url: base_url + "staffAuth/logout",
     method: "POST",
     success: function (response) {
-      window.location.href = base_url + "/";
+      window.location.href = base_url;
     },
     error: function (xhr, status, error) {
       alert("Logout failed. Please try again.");

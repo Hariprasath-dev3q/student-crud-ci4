@@ -91,7 +91,7 @@ async function submitData(e) {
     mobileNumber: $("#mobileNumber").val(),
     email: $("#email").val(),
     password: $("#password").val(),
-    gender: $("input[name='genderselect']:checked").val(),
+    gender: $("input[name='genderselect']:checked").val().trim(),
     department: $("input[name='department[]']:checked")
       .map((_, el) => el.value)
       .get()
@@ -104,16 +104,19 @@ async function submitData(e) {
     city: $("#city").val(),
     address: $("#address").val(),
   };
-  // console.log("Teacher ID:", $("#teacher_id").val());
-  // console.log("Teacher Name:", $("#teacher_id option:selected").text());
-  // console.log("Full data object:", data);
-  // return;
+  
   const editId = $("#edit_id").val();
   if (editId) data.editId = editId;
+
+  if (editId) {
+    url = base_url + "students/" + editId;
+    method = "PUT";
+  }
   // console.log('ddd');
   // return;
   $.ajax({
-    url: base_url + "studentform/save-items",
+    // url: base_url + "studentform/save-items",
+    url: base_url + "students",
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify(data),
@@ -150,8 +153,10 @@ function deleteOne(id, photoUrl) {
   let currentPage = $("#current-page").val() || 1;
   data.page = currentPage;
   $.ajax({
-    url: base_url + "studentform/delete-item",
-    method: "POST",
+    // url: base_url + "studentform/delete-item",
+    url: base_url + "students/" + id,
+    // method: "POST",
+    method: "DELETE",
     dataType: "json",
     data: data,
     success: function (res) {
@@ -212,25 +217,13 @@ function exportDataJS() {
   });
 }
 
-function searchTeacherByName(e) {
-  e.preventDefault();
-  console.log("onchange search");
-
-  var staffName = $("#searchTeacherName").val().trim();
-  data = {};
-  data.staffName = staffName;
-  $.ajax({
-    url: base_url + "studentform/display/teacher",
-    type: "GET",
-    data: data,
-    success: function (response) {
-      $("#student-container").html(response);
-    },
-    error: function (err) {
-      console.error("Search error:", err);
-    },
-  });
-}
+  function globalSearch() {
+    var searchData = $("#globalSearchData").val().toLowerCase().trim();
+    $('#studentTable tbody tr').filter(function(){
+      $(this).toggle($(this).text().toLowerCase().indexOf(searchData) > -1);
+    });
+    
+  }
 
 function deleteAllUsers() {
   var selectedIds = [];

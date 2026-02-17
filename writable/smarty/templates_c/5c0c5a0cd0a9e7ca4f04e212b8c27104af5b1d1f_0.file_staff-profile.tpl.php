@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-16 07:46:38
-  from 'file:student-profile.tpl' */
+/* Smarty version 5.7.0, created on 2026-02-17 13:37:55
+  from 'file:staff-profile.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_6992cb5e0e63f3_04061613',
+  'unifunc' => 'content_69946f339c52a3_90197622',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '2e0f85fd08cfc4a0fe567ca13daed091952912b1' => 
+    '5c0c5a0cd0a9e7ca4f04e212b8c27104af5b1d1f' => 
     array (
-      0 => 'student-profile.tpl',
-      1 => 1771049675,
+      0 => 'staff-profile.tpl',
+      1 => 1771335472,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_6992cb5e0e63f3_04061613 (\Smarty\Template $_smarty_tpl) {
+function content_69946f339c52a3_90197622 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -61,7 +61,7 @@ js/student-management.js"><?php echo '</script'; ?>
 js/student-form.js"><?php echo '</script'; ?>
 >
 
-    <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
+  <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
 css/style.css" rel="stylesheet">
 
 </head>
@@ -95,47 +95,17 @@ insertData/display" class="list-group-item list-group-item-action">
 images/img2.jpg" alt="Profile" class="rounded-circle me-2 custom-header-img mt-2 mb-2"
               style="width: 60px; height: 60px;">
             <div class="row">
-                            <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Student Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacherName'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
-</p>
-              </div>
               <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Father's Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['father_name'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
+                <p class="text-black"><span class="label text-black">Staff Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacherName'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
 </p>
               </div>
-              <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Gender:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['gender'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
-</p>
-              </div>
-
               <div class="col-md-6">
                 <p class="text-black"><span class="label text-black">Email:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['email'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
 </p>
               </div>
               <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Phone:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['mobile'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+                <p class="text-black"><span class="label text-black">Staff ID:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['staffId'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
 </p>
-              </div>
-
-              <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">DOB:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['dob'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
-</p>
-              </div>
-              <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Department:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['department'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
-</p>
-              </div>
-              <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Course:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['course'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
-</p>
-              </div>
-              <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">City:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['city'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
-</p>
-              </div>
-              <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Address:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['address'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
- </p>
               </div>
             </div>
           </figcaption>

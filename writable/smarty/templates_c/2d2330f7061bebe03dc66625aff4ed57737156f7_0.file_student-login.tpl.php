@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-13 09:03:02
+/* Smarty version 5.7.0, created on 2026-02-17 06:59:32
   from 'file:student-login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_698ee8c6e76ea2_41311079',
+  'unifunc' => 'content_699411d4704708_59858810',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2d2330f7061bebe03dc66625aff4ed57737156f7' => 
     array (
       0 => 'student-login.tpl',
-      1 => 1770973377,
+      1 => 1771311569,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_698ee8c6e76ea2_41311079 (\Smarty\Template $_smarty_tpl) {
+function content_699411d4704708_59858810 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -65,7 +65,7 @@ css/style.css" rel="stylesheet">
 
 <body>
   <div class="container mt-5 w-25 login-form">
-    <h2 class="mb-4 text-center">Student Login</h2>
+    <h2 class="mb-4 text-center">Staff Login</h2>
     <form action="/studentform/login" method="post" id="loginForm">
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>

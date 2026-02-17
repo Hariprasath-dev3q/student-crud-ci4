@@ -3,11 +3,11 @@
 namespace App\Controllers;
 
 use App\Libraries\Smarty;
-use App\Models\StudentLoginModel;
+use App\Models\StaffLoginModel;
 use App\Models\StudentFormModel;
 use App\Controllers\BaseController;
 
-class StudentAuth extends BaseController
+class StaffAuth extends BaseController
 {
 
 
@@ -18,18 +18,37 @@ class StudentAuth extends BaseController
     public function __construct()
     {
         $this->smarty = new Smarty();
-        $this->studentloginmodel = new StudentLoginModel();
+        $this->studentloginmodel = new StaffLoginModel();
         $this->StudentFormModel = new StudentFormModel();
         $this->smarty->assign('base_url', base_url());
     }
 
+    // mock api
+    public function mock_login(){
+        $data = $this->request->getJSON(true);
+        $this->studentloginmodel->verifyLogin($data['email'], $data['password']);
+        return $this->response->setJSON([
+            'status' => 1,
+            'message' => 'Login Success'
+        ]);
+    }   
+
+    public function mock_signup(){
+        $data = $this->request->getJSON(true);
+        $this->studentloginmodel->staffSignup($data['email'], $data['password'], $data['teacherName']);
+        return $this->response->setJSON([
+            'status' => 1,
+            'message' => 'Signup Success'
+        ]);
+    }
+    // *************
     public function login()
     {
         $cookieEmail = $this->request->getCookie('remember_email');
         if ($cookieEmail === '1') {
             $this->smarty->assign('cookieEmail', $cookieEmail);
         }
-        return $this->smarty->display('student-login.tpl');
+        return $this->smarty->display('staff-login.tpl');
     }
 
     public function userLogin()
@@ -50,7 +69,7 @@ class StudentAuth extends BaseController
             }
 
             $this->smarty->assign('error', 'Invalid email or password');
-            return $this->smarty->display('student-login.tpl');
+            return $this->smarty->display('staff-login.tpl');
         } else {
 
             session()->set('isLoggedIn', true);
@@ -67,17 +86,17 @@ class StudentAuth extends BaseController
 
             if ($this->request->isAJAX()) {
                 return $this->response->setJSON([
-                    'status' => 1
+                    'status' => 1,
                 ]);
             }
 
-            return redirect()->to('/studentAuth/dashboard')->withCookies();
+            return redirect()->to('/staffAuth/dashboard')->withCookies();
         }
     }
 
     public function signup()
     {
-        return $this->smarty->display('student-signup.tpl');
+        return $this->smarty->display('staff-signup.tpl');
     }
 
     public function staffSignup()
@@ -89,12 +108,13 @@ class StudentAuth extends BaseController
         if ($result) {
             if ($this->request->isAJAX()) {
                 return $this->response->setJSON([
-                    'status' => 1
+                    'status' => 1,
                 ]);
             }
-            return redirect()->to('/studentAuth/userLogin');
+            
+            return redirect()->to('/');
         }
-        return $this->smarty->display('student-signup.tpl');
+        return $this->smarty->display('staff-signup.tpl');
     }
 
 

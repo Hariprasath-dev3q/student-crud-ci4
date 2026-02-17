@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Libraries\Smarty;
 use App\Models\StudentFormModel;
-use App\Models\StudentLoginModel;
+use App\Models\StaffLoginModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Controllers\BaseController;
 use stdClass;
@@ -12,7 +12,7 @@ use stdClass;
 class StudentForm extends BaseController
 {
   protected StudentFormModel $StudentFormModel;
-  protected StudentLoginModel $StudentLoginModel;
+  protected StaffLoginModel $StaffLoginModel;
   protected $smarty;
   protected $message;
   protected $redis;
@@ -21,7 +21,7 @@ class StudentForm extends BaseController
   public function __construct()
   {
     $this->StudentFormModel = new StudentFormModel();
-    $this->StudentLoginModel = new StudentLoginModel();
+    $this->StaffLoginModel = new StaffLoginModel();
     $this->smarty = new Smarty();
     $this->message = new stdClass();
     $this->message->status = 0;
@@ -37,41 +37,104 @@ class StudentForm extends BaseController
     }
     $studentData = session()->get('studentData');
     $this->smarty->assign('studentData', $studentData);
-    return $this->smarty->display('student-profile.tpl');
+    return $this->smarty->display('staff-profile.tpl');
   }
+
+  // public function index()
+  // {
+
+  //   $isLoggedIn = session()->get('isLoggedIn');
+  //   if (!$isLoggedIn) {
+  //     return redirect()->to('/');
+  //   }
+
+  //   $studentData = session()->get('studentData');
+
+  //   $item = new \stdClass();
+  //   $item->rollNo = '';
+  //   $item->fname = '';
+  //   $item->lname = '';
+  //   $item->father_name = '';
+  //   $item->dob = '';
+  //   $item->mobile = '';
+  //   $item->email = '';
+  //   $item->password = '';
+  //   $item->gender = '';
+  //   $item->department = '';
+  //   $item->course = '';
+  //   $item->file = '';
+  //   $item->city = '';
+  //   $item->address = '';
+  //   $item->id = '';
+
+  //   $teachers = $this->StaffLoginModel->getallStaffs();
+
+  //   $this->smarty->assign('teachers', $teachers);
+  //   $this->smarty->assign('studentData', $studentData);
+  //   $this->smarty->assign('item', (array)$item);
+  //   return $this->smarty->display('studentForm.tpl');
+  // }
 
   public function index()
   {
-    $isLoggedIn = session()->get('isLoggedIn');
-    if (!$isLoggedIn) {
-      return redirect()->to('/');
+    $page = $this->request->getGet('page') ?? 1;
+    $data = $this->fileCache->get('student_list' . $page);
+    $data = $this->StudentFormModel->findAllItems();
+    if ($data === null) {
+      $data = $this->StudentFormModel->findAllItems();
+      $this->fileCache->save('student_list' . $page, $data, 3600);
     }
 
-    $studentData = session()->get('studentData');
+    return $this->response->setJSON($data);
+  }
 
-    $item = new \stdClass();
-    $item->rollNo = '';
-    $item->fname = '';
-    $item->lname = '';
-    $item->father_name = '';
-    $item->dob = '';
-    $item->mobile = '';
-    $item->email = '';
-    $item->password = '';
-    $item->gender = '';
-    $item->department = '';
-    $item->course = '';
-    $item->file = '';
-    $item->city = '';
-    $item->address = '';
-    $item->id = '';
+  public function store()
+  {
+    $data = $this->request->getJSON(true);
+    for ($i = 1; $i <= 100; $i++) {
+      $this->fileCache->delete('student_list' . $i);
+    }
+    $this->StudentFormModel->insertItem($data);
+    return $this->response->setJSON([
+      'status' => 1,
+      'message' => 'Student created successfully'
+    ]);
+  }
 
-    $teachers = $this->StudentLoginModel->getallStaffs();
+  public function update($id)
+  {
+    $data = $this->request->getJSON(true);
+    for ($i = 1; $i <= 100; $i++) {
+      $this->fileCache->delete('student_list' . $i);
+    }
+    $this->StudentFormModel->updateItemById($id, $data);
+    return $this->response->setJSON([
+      'status' => 1,
+      'message' => 'Student updated successfully'
+    ]);
+  }
 
-    $this->smarty->assign('teachers', $teachers);
-    $this->smarty->assign('studentData', $studentData);
-    $this->smarty->assign('item', (array)$item);
-    return $this->smarty->display('studentForm.tpl');
+  public function delete($id)
+  {
+    // $data = $this->request->getJSON(true);
+    $page = $this->request->getVar('page') ?? 1;
+    $this->StudentFormModel->deleteItemById($id);
+    $this->fileCache->delete('student_list' . $page);
+    return $this->response->setJSON([
+      'status' => 1,
+      'message' => 'Student deleted successfully'
+    ]);
+  }
+
+  public function filterByTeacher()
+  {
+    $teacher = $this->request->getGet('teacher');
+
+    $data = $this->StudentFormModel
+      ->like('teacher_name', $teacher)
+      ->findAllItems();
+
+    return $this->response->setJSON($data);
   }
 
   public function deleteItem()
@@ -104,12 +167,15 @@ class StudentForm extends BaseController
     $studentData = session()->get('studentData');
     $page = $this->request->getVar('page') ?? 1;
 
+    log_message('debug', 'Page parameter received: ' . $page);
+
     $this->smarty->assign('addUserUrl', url_to('StudentForm::index'));
     $this->smarty->assign('editUrl', url_to('StudentForm::index'));
+
     $data = $this->fileCache->get('student_list' . $page);
 
     if ($data === null) {
-      $data = $this->StudentFormModel->getAllItems();
+      $data = $this->StudentFormModel->getAllItems($page);
       $this->fileCache->save('student_list' . $page, $data, 3600);
     }
 
@@ -124,11 +190,10 @@ class StudentForm extends BaseController
     return $this->smarty->display('studentDetails.tpl');
   }
 
-  public function getItemsByTeacherName()
+  // for filter search
+  public function getItemsByName()
   {
-    $staffName = $this->request->getVar('staffName');
-
-    $data = $this->StudentFormModel->getItemsByTeacher($staffName);
+    $data = $this->StudentFormModel->getItemsBy();
 
     $this->smarty->assign('items', $data['items']);
     $this->smarty->assign('pager', $data['pager']);
@@ -217,8 +282,6 @@ class StudentForm extends BaseController
         'gender' => 'required|in_list[male,female]|trim',
         'department' => 'required',
         'course' => 'required',
-        // 'teacherId' => 'required',
-        // 'teacherName' => 'required',
         'file' => 'permit_empty|uploaded[file]|max_size[file,2048]|is_image[file]',
         'city' => 'required|max_length[35]|trim',
         'address' => 'required|max_length[70]|trim',
@@ -290,8 +353,8 @@ class StudentForm extends BaseController
           'gender'      => $data['gender'],
           'department'  => $data['department'],
           'course'      => $data['course'],
-          'teacher_id'      => $data['teacherId'],
-          'teacher_name'      => $data['teacherName'],
+          'teacher_id'   => $data['teacherId'],
+          'teacher_name' => $data['teacherName'],
           'city'        => $data['city'],
           'address'     => $data['address'],
         ];
@@ -339,10 +402,10 @@ class StudentForm extends BaseController
           'address'     => $data['address'],
         ]);
 
-        // Clear all possible cache pages to ensure fresh data
         for ($i = 1; $i <= 100; $i++) {
           $this->fileCache->delete('student_list' . $i);
         }
+
         return $this->response->setJSON([
           'status' => 1,
           'message' => 'Student registered successfully'
@@ -358,6 +421,6 @@ class StudentForm extends BaseController
 
   public function signp()
   {
-    $this->smarty->display('student-signup.tpl');
+    $this->smarty->display('staff-signup.tpl');
   }
 }
