@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-19 07:08:33
+/* Smarty version 5.7.0, created on 2026-02-19 14:12:50
   from 'file:studentFormDetails.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_6996b6f127f446_33458035',
+  'unifunc' => 'content_69971a627a9862_89677116',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '64cc7a6ca88a22c7250eb3291695e7ee3ca7c84b' => 
     array (
       0 => 'studentFormDetails.tpl',
-      1 => 1771484716,
+      1 => 1771509531,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentFormDetails_partial.tpl' => 1,
   ),
 ))) {
-function content_6996b6f127f446_33458035 (\Smarty\Template $_smarty_tpl) {
+function content_69971a627a9862_89677116 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html>
@@ -90,19 +90,22 @@ insertData/display" class="list-group-item list-group-item-action">
           <form method="post" enctype="multipart/form-data" action="<?php echo $_smarty_tpl->getValue('base_url');?>
 insertData/import-excel"
             id="importExcelForm">
-            <label class="file-btn btn btn-warning mb-3 ms-3 text-white">
+            <label class="file-btn btn btn-warning mb-3 mt-2 text-white">
               Import <i class="fa-solid fa-file-import"></i>
               <input type="file" id="excelFile" name="excelFile" accept=".xls,.xlsx" style="display: none;"
                 onchange=" if(confirm('Are you sure you want to import this file?')) return importDataJS(event)" />
             </label>
           </form>
-          <button class="btn btn-success mb-3 ms-3 text-decoration-none text-white" onclick='exportDataJS()'>Export <i
+          <button class="btn btn-success mb-3 mt-2 ms-3 text-decoration-none text-white" onclick='exportDataJS()'>Export <i
               class="fas fa-file-excel"></i>
           </button>
-          <button class="btn btn-danger mb-3 ms-3" onclick="deleteAllUsers()">Delete <i class="fa-solid fa-trash"></i>
+          <button class="btn btn-danger mb-3 mt-2 ms-3" onclick="deleteAllUsers()">Delete <i class="fa-solid fa-trash"></i>
           </button>
-          <button class="btn btn-primary mb-3 ms-3 text-decoration-none text-white" onclick="sampleExport()">
-            Sample Excel <i class="fa-solid fa-file-lines"></i>
+          <button class="btn btn-primary mb-3 mt-2 ms-3 text-decoration-none text-white" onclick="sampleExport()">
+            Excel <i class="fa-solid fa-file-lines"></i>
+          </button>
+          <button class="btn btn-secondary mb-3 mt-2 ms-3 text-decoration-none text-white" onclick="printPdf()">
+            Print <i class="fa-solid fa-file-pdf"></i></i>
           </button>
         </div>
         <div class="d-flex justify-content-end w-50">
@@ -113,6 +116,7 @@ insertData/import-excel"
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           <?php }?>
+          
           <?php if ($_smarty_tpl->getValue('success')) {?>
             <div class="alert alert-success alert-dismissible fade show myAlert w-50" role="alert">
               <?php echo $_smarty_tpl->getValue('success');?>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-18 07:45:23
+/* Smarty version 5.7.0, created on 2026-02-19 07:13:59
   from 'file:staff-signup.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_69956e1349fe45_77509792',
+  'unifunc' => 'content_6996b8378b74b7_83521965',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b63034b15c7716bc5b6e5f219a7f284821c5cc43' => 
     array (
       0 => 'staff-signup.tpl',
-      1 => 1771311562,
+      1 => 1771410523,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_69956e1349fe45_77509792 (\Smarty\Template $_smarty_tpl) {
+function content_6996b8378b74b7_83521965 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -60,7 +60,6 @@ js/student-management.js"><?php echo '</script'; ?>
   <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
 css/style.css" rel="stylesheet">
 
-  
 </head>
 
 <body>
@@ -81,7 +80,7 @@ css/style.css" rel="stylesheet">
         <input type="email" class="form-control" id="email" name="email" value="<?php echo (($tmp = $_smarty_tpl->getValue('cookieEmail') ?? null)===null||$tmp==='' ? '' ?? null : $tmp);?>
 " required>
       </div>
-            <div class="mb-3">Already have an account?
+      <div class="mb-3">Already have an account?
         <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
 " class="">Login</a>
       </div>

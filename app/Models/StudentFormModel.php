@@ -51,14 +51,11 @@ class StudentFormModel extends Model
 
   public function insertItem($data)
   {
-    // $existingId = $this->where('id', $data['id'])->first();
-    // if($existingId){
-    //   return false;
-    // }
     $result = $this->db->table('studentregisterationform')
       ->insert($data);
     return $result;
   }
+  
   public function insertItemMock($data)
   {
     $existingId = $this->where('id', $data['id'])->first();
@@ -86,6 +83,7 @@ class StudentFormModel extends Model
       ->where('teacher_id', $teacherId)
       ->first();
   }
+
   public function findAllItems()
   {
     return $this->orderBy('id', 'ASC')->findAll();

@@ -54,6 +54,6 @@ $routes->group('insertData', function ($routes) {
   $routes->post('export-excel', 'InsertData::exportData');
   $routes->post('sample-excel', 'InsertData::sampleExcel');
   $routes->post('delete-multiple', 'InsertData::deleteMultiple');
+  $routes->post('generate-pdf', "InsertData::generatePdf");
   
 });
-$routes->get('test', 'InsertData::testRedis');

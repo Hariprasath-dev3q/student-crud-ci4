@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-18 11:33:25
+/* Smarty version 5.7.0, created on 2026-02-19 13:46:25
   from 'file:staff-profile.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_6995a385412c32_64495444',
+  'unifunc' => 'content_6997143190df42_40007373',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5c0c5a0cd0a9e7ca4f04e212b8c27104af5b1d1f' => 
     array (
       0 => 'staff-profile.tpl',
-      1 => 1771414403,
+      1 => 1771508608,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_6995a385412c32_64495444 (\Smarty\Template $_smarty_tpl) {
+function content_6997143190df42_40007373 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -79,7 +79,6 @@ studentform/display" class="list-group-item list-group-item-action active" aria-
         <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
 insertData/display" class="list-group-item list-group-item-action">
           <i class="fa-solid fa-file-import"></i>Import file</a>
-
       </div>
     </sidebar>
     <div class="card w-50 profile-card">

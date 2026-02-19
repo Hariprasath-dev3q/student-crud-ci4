@@ -46,19 +46,22 @@
 
           <form method="post" enctype="multipart/form-data" action="{$base_url}insertData/import-excel"
             id="importExcelForm">
-            <label class="file-btn btn btn-warning mb-3 ms-3 text-white">
+            <label class="file-btn btn btn-warning mb-3 mt-2 text-white">
               Import <i class="fa-solid fa-file-import"></i>
               <input type="file" id="excelFile" name="excelFile" accept=".xls,.xlsx" style="display: none;"
                 onchange=" if(confirm('Are you sure you want to import this file?')) return importDataJS(event)" />
             </label>
           </form>
-          <button class="btn btn-success mb-3 ms-3 text-decoration-none text-white" onclick='exportDataJS()'>Export <i
+          <button class="btn btn-success mb-3 mt-2 ms-3 text-decoration-none text-white" onclick='exportDataJS()'>Export <i
               class="fas fa-file-excel"></i>
           </button>
-          <button class="btn btn-danger mb-3 ms-3" onclick="deleteAllUsers()">Delete <i class="fa-solid fa-trash"></i>
+          <button class="btn btn-danger mb-3 mt-2 ms-3" onclick="deleteAllUsers()">Delete <i class="fa-solid fa-trash"></i>
           </button>
-          <button class="btn btn-primary mb-3 ms-3 text-decoration-none text-white" onclick="sampleExport()">
-            Sample Excel <i class="fa-solid fa-file-lines"></i>
+          <button class="btn btn-primary mb-3 mt-2 ms-3 text-decoration-none text-white" onclick="sampleExport()">
+            Excel <i class="fa-solid fa-file-lines"></i>
+          </button>
+          <button class="btn btn-secondary mb-3 mt-2 ms-3 text-decoration-none text-white" onclick="printPdf()">
+            Print <i class="fa-solid fa-file-pdf"></i></i>
           </button>
         </div>
         <div class="d-flex justify-content-end w-50">
@@ -68,6 +71,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           {/if}
+          
           {if $success}
             <div class="alert alert-success alert-dismissible fade show myAlert w-50" role="alert">
               {$success}

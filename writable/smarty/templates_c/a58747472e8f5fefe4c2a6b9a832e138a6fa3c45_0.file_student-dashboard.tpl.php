@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-18 13:23:06
+/* Smarty version 5.7.0, created on 2026-02-19 12:43:31
   from 'file:student-dashboard.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_6995bd3aaba4b7_34905987',
+  'unifunc' => 'content_69970573216fb7_63353708',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a58747472e8f5fefe4c2a6b9a832e138a6fa3c45' => 
     array (
       0 => 'student-dashboard.tpl',
-      1 => 1771420528,
+      1 => 1771505008,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_6995bd3aaba4b7_34905987 (\Smarty\Template $_smarty_tpl) {
+function content_69970573216fb7_63353708 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -49,8 +49,16 @@ $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 >
     base_url = '<?php echo $_smarty_tpl->getValue('base_url');?>
 ';
+    
+    const genderData = {
+      boys: <?php echo (($tmp = $_smarty_tpl->getValue('gender')['male_count'] ?? null)===null||$tmp==='' ? 0 ?? null : $tmp);?>
+,
+      girls: <?php echo (($tmp = $_smarty_tpl->getValue('gender')['female_count'] ?? null)===null||$tmp==='' ? 0 ?? null : $tmp);?>
+
+    };
   <?php echo '</script'; ?>
 >
+
   <?php echo '<script'; ?>
  src="<?php echo $_smarty_tpl->getValue('base_url');?>
 js/student-management.js"><?php echo '</script'; ?>
@@ -59,8 +67,11 @@ js/student-management.js"><?php echo '</script'; ?>
  src="<?php echo $_smarty_tpl->getValue('base_url');?>
 js/student-form.js"><?php echo '</script'; ?>
 >
+  <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/chart.js"><?php echo '</script'; ?>
+>
   <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
-css/style.css" rel="stylesheet">   
+css/style.css" rel="stylesheet">
 
 </head>
 
@@ -85,18 +96,14 @@ insertData/display" class="list-group-item list-group-item-action">
     <h2>Welcome, <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacher_name'] ?? null)===null||$tmp==='' ? "Guest" ?? null : $tmp);?>
 </h2>
 
-    <div class="card mt-3" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Your ID: <?php echo $_smarty_tpl->getValue('studentData')['staffId'];?>
-</h5>
-        <p class="card-text"><i class="fa-solid fa-users"></i> Total Students: <?php echo $_smarty_tpl->getValue('studentCount');?>
+    
+    <div class="card mt-4 p-3 w-25" style="max-width:500px;">
+      <h5 class="text-center">Gender Distribution</h5>
+      <canvas id="genderChart"></canvas>
+      <p class="card-text mt-3"><i class="fa-solid fa-users"></i> Total Students: <?php echo $_smarty_tpl->getValue('studentCount');?>
 </p>
-        <p class="card-text"><i class="fa-solid fa-person" style="color:lightblue;"></i> Total Boys: <?php echo (($tmp = $_smarty_tpl->getValue('gender')['male_count'] ?? null)===null||$tmp==='' ? 0 ?? null : $tmp);?>
-</p>
-        <p class="card-text"><i class="fa-solid fa-person-dress" style="color:pink;"></i> Total Girls: <?php echo (($tmp = $_smarty_tpl->getValue('gender')['female_count'] ?? null)===null||$tmp==='' ? 0 ?? null : $tmp);?>
-</p>
-      </div>
     </div>
+
   </div>
 </body>
 

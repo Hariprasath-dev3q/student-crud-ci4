@@ -18,10 +18,17 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     base_url = '{$base_url}';
+    
+    const genderData = {
+      boys: {$gender.male_count|default:0},
+      girls: {$gender.female_count|default:0}
+    };
   </script>
+
   <script src="{$base_url}js/student-management.js"></script>
   <script src="{$base_url}js/student-form.js"></script>
-  <link href="{$base_url}css/style.css" rel="stylesheet">   
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="{$base_url}css/style.css" rel="stylesheet">
 
 </head>
 
@@ -42,14 +49,21 @@
 
     <h2>Welcome, {$studentData.teacher_name|default:"Guest"}</h2>
 
-    <div class="card mt-3" style="width: 18rem;">
+    {* <div class="card mt-3" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Your ID: {$studentData.staffId}</h5>
         <p class="card-text"><i class="fa-solid fa-users"></i> Total Students: {$studentCount}</p>
         <p class="card-text"><i class="fa-solid fa-person" style="color:lightblue;"></i> Total Boys: {$gender.male_count|default:0}</p>
         <p class="card-text"><i class="fa-solid fa-person-dress" style="color:pink;"></i> Total Girls: {$gender.female_count|default:0}</p>
       </div>
+    </div> *}
+
+    <div class="card mt-4 p-3 w-25" style="max-width:500px;">
+      <h5 class="text-center">Gender Distribution</h5>
+      <canvas id="genderChart"></canvas>
+      <p class="card-text mt-3"><i class="fa-solid fa-users"></i> Total Students: {$studentCount}</p>
     </div>
+
   </div>
 </body>
 

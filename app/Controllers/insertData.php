@@ -14,6 +14,7 @@ use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Shared\Date as ExcelDate;
 use App\Models\StaffLoginModel;
+use TCPDF;
 
 class InsertData extends BaseController
 {
@@ -401,5 +402,68 @@ class InsertData extends BaseController
     }
 
     return $this->smarty->display('studentFormDetails.tpl');
+  }
+
+  public function generatePdf()
+  {
+    $items = $this->model->findAllItems();
+
+    $pdf = new TCPDF();
+
+    $pdf->setTitle("Student Details");
+
+    $pdf->AddPage();
+
+    $pdf->setFont("helvetica", '', 8);
+
+    $htmlTable = '
+      <table border="1" cellpadding="4">
+  <thead >
+    <tr style="background-color:#9dd49d; font-weight:bold;">
+      <th scope="col" width="7%">S.NO</th>
+      <th scope="col" width="10%" >ROLL NO</th>
+      <th scope="col"  width="17%" >STUDENT NAME</th>
+      <th scope="col">DOB</th>
+      <th scope="col">MOBILE</th>
+      <th scope="col" width="17%">EMAIL</th>
+      <th scope="col">GENDER</th>
+      <th scope="col">DEPARTMENT</th>
+    </tr>
+  </thead>
+  <tbody class="text-nowrap">';
+
+    if (!empty($items)) {
+      $count = 1;
+      foreach ($items as $item) {
+
+        $htmlTable .= '
+        <tr>
+          <td width="7%">' . $count++ . '</td>
+          <td width="10%">' . $item['rollNo'] . '</td>
+          <td width="17%" >' . $item['fname'] . ' ' . $item['lname'] . '</td>
+          <td>' . $item['dob'] . '</td>
+          <td>' . $item['mobile'] . '</td>
+          <td  width="17%">' . $item['email'] . '</td>
+          <td>' . $item['gender'] . '</td>
+          <td>' . $item['department'] . '</td>
+        </tr>';
+      }
+    } else {
+      $htmlTable .= '
+            <tr>
+                <td colspan="10" align="center">No Data Found</td>
+            </tr>
+        ';
+    }
+
+    $htmlTable .= '</tbody></table>';
+
+    $pdf->writeHTML($htmlTable, true, false, true, false, '');
+
+    $pdfContent = $pdf->Output("Student-data.pdf", 'S');
+
+    return $this->response
+      ->setContentType('application/pdf')
+      ->setBody($pdfContent);
   }
 }

@@ -37,7 +37,6 @@
         </a>
         <a href="{$base_url}insertData/display" class="list-group-item list-group-item-action">
           <i class="fa-solid fa-file-import"></i>Import file</a>
-
       </div>
     </sidebar>
     <div class="card w-50 profile-card">

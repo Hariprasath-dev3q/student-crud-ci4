@@ -1,3 +1,177 @@
+$(document).ready(() => {
+  setTimeout(function () {
+    $(".myAlert")
+      .fadeTo(500, 0)
+      .slideUp(500, function () {
+        $(this).remove();
+      });
+  }, 1500);
+
+  $("#mobileNumber").keydown(function (e) {
+    var key = e.keyCode;
+    if (!((key >= 48 && key <= 57) || key == 8 || key == 37 || key == 39)) {
+      e.preventDefault();
+    }
+  });
+
+  $("#multiselect").on("click", function () {
+    var isChecked = $(this).is(":checked");
+    $('table tbody input[type="checkbox"]').each(function () {
+      $(this).prop("checked", isChecked);
+    });
+  });
+
+  $("#studentPic").on("change", function () {
+    onChangeImage(this);
+  });
+
+  function onChangeImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#preview").attr("src", e.target.result).show();
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#studentPic").on("change", function () {
+    if (this.files && this.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        $("#preview").attr("src", e.target.result).show();
+        $(".customBtn").show();
+
+        $(".customBtn").on("click", function () {
+          $("#preview").hide();
+          $(".customBtn").hide();
+          $("#studentPic").val("");
+          // $("#old_file").val("");
+        });
+      };
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+
+  $(".customEyeBtn").on("mouseover", function () {
+    $("#password").attr("type", "text");
+  });
+  $(".customEyeBtn").on("mouseleave", function () {
+    $("#password").attr("type", "password");
+  });
+
+  $(document).on("click", ".ajax-page", function (e) {
+    e.preventDefault();
+
+    let index = $(this).data("index");
+    var data = {};
+    data.page = index;
+    $("#student-container").html(`<div class='text-center p-3'>
+        <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">Loading...</span>
+      </button>
+      </div>`);
+    $.ajax({
+      url: base_url + "insertData/display",
+      method: "GET",
+      data: data,
+      success: function (response) {
+        $("#student-container").html(response);
+      },
+      error: function (err) {
+        console.error("Pagination error:", err);
+        $("#student-container").html(
+          "<div class='alert alert-danger'>Error loading page</div>",
+        );
+      },
+    });
+  });
+
+  $(document).on("change", "#pageSelector", function () {
+    console.log("Page selector changed");
+    let index = $(this).val();
+    let data = {};
+    data.page = index;
+    $("#student-container").html(
+      `<div class='text-center p-3'>
+        <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">Loading...</span>
+      </button>
+      </div>`,
+    );
+
+    $.ajax({
+      url: base_url + "studentform/display",
+      method: "GET",
+      data: data,
+      success: function (response) {
+        $("#student-container").html(response);
+      },
+      error: function () {
+        $("#student-container").html(
+          "<div class='alert alert-danger'>Error loading page</div>",
+        );
+      },
+    });
+  });
+
+  // Doughnut Chart
+  if (typeof genderData !== "undefined") {
+    const boys = genderData.boys;
+    const girls = genderData.girls;
+
+    const canvas = document.getElementById("genderChart");
+
+    if (canvas) {
+      const ctx = document.getElementById('genderChart').getContext('2d');
+
+
+      new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: ["Boys", "Girls"],
+          datasets: [
+            {
+              data: [boys, girls],
+              backgroundColor: ["#36A2EB", "#FF6384"],
+              borderWidth: 2,
+              hoverOffset: 8,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          cutout: "65%",
+          plugins: {
+            legend: {
+              position: "bottom",
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  let total = boys + girls;
+                  let percentage =
+                    total > 0 ? ((context.raw / total) * 100).toFixed(1) : 0;
+                  return (
+                    context.label +
+                    ": " +
+                    context.raw +
+                    " (" +
+                    percentage +
+                    "%)"
+                  );
+                },
+              },
+            },
+          },
+        },
+      });
+    }
+  }
+});
+
 async function submitData(e) {
   e.preventDefault();
 
@@ -263,122 +437,25 @@ function deleteAllUsers() {
   }
 }
 
-$(document).ready(() => {
-  setTimeout(function () {
-    $(".myAlert")
-      .fadeTo(500, 0)
-      .slideUp(500, function () {
-        $(this).remove();
-      });
-  }, 1500);
-
-  $("#mobileNumber").keydown(function (e) {
-    var key = e.keyCode;
-    if (!((key >= 48 && key <= 57) || key == 8 || key == 37 || key == 39)) {
-      e.preventDefault();
+function printPdf(){
+  
+  $.ajax({
+    url: base_url + "insertData/generate-pdf",
+    type: "POST",
+    xhrFields:{
+      responseType:"blob"
+    },
+    success: function(blob){
+      const url = window.URL.createObjectURL(blob);
+      var aTag = $('<a></a>');
+      $('body').append(aTag);
+      aTag.attr('href',url);
+      aTag.attr('download', 'students-data.pdf');
+      aTag[0].click();
+      aTag.remove();
+      window.URL.revokeObjectURL(url);
     }
-  });
+  })
 
-  $("#multiselect").on("click", function () {
-    var isChecked = $(this).is(":checked");
-    $('table tbody input[type="checkbox"]').each(function () {
-      $(this).prop("checked", isChecked);
-    });
-  });
-
-  $("#studentPic").on("change", function () {
-    onChangeImage(this);
-  });
-
-  function onChangeImage(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $("#preview").attr("src", e.target.result).show();
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-
-  $("#studentPic").on("change", function () {
-    if (this.files && this.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        $("#preview").attr("src", e.target.result).show();
-        $(".customBtn").show();
-
-        $(".customBtn").on("click", function () {
-          $("#preview").hide();
-          $(".customBtn").hide();
-          $("#studentPic").val("");
-          // $("#old_file").val("");
-        });
-      };
-      reader.readAsDataURL(this.files[0]);
-    }
-  });
-
-  $(".customEyeBtn").on("mouseover", function () {
-    $("#password").attr("type", "text");
-  });
-  $(".customEyeBtn").on("mouseleave", function () {
-    $("#password").attr("type", "password");
-  });
-
-  $(document).on("click", ".ajax-page", function (e) {
-    e.preventDefault();
-
-    let index = $(this).data("index");
-    var data = {};
-    data.page = index;
-    $("#student-container").html(`<div class='text-center p-3'>
-        <button class="btn btn-primary" type="button" disabled>
-        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-        <span role="status">Loading...</span>
-      </button>
-      </div>`);
-    $.ajax({
-      url: base_url + "insertData/display",
-      method: "GET",
-      data: data,
-      success: function (response) {
-        $("#student-container").html(response);
-      },
-      error: function (err) {
-        console.error("Pagination error:", err);
-        $("#student-container").html(
-          "<div class='alert alert-danger'>Error loading page</div>",
-        );
-      },
-    });
-  });
-
-  $(document).on("change", "#pageSelector", function () {
-    console.log("Page selector changed");
-    let index = $(this).val();
-    let data = {};
-    data.page = index;
-    $("#student-container").html(
-      `<div class='text-center p-3'>
-        <button class="btn btn-primary" type="button" disabled>
-        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-        <span role="status">Loading...</span>
-      </button>
-      </div>`,
-    );
-
-    $.ajax({
-      url: base_url + "studentform/display",
-      method: "GET",
-      data: data,
-      success: function (response) {
-        $("#student-container").html(response);
-      },
-      error: function () {
-        $("#student-container").html(
-          "<div class='alert alert-danger'>Error loading page</div>",
-        );
-      },
-    });
-  });
-});
+  // window.location.href = base_url + "insertData/generate-pdf";
+}
