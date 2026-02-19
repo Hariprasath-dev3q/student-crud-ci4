@@ -12,8 +12,8 @@ class StudentFormModel extends Model
 
   public function deleteItemById($id)
   {
-    $result = $this->db->query("Delete from studentregisterationform where id = $id");
-    return $result;
+    $this->db->query("Delete from studentregisterationform where id = $id");
+    return true;
   }
 
   public function getItemsBy()
@@ -23,24 +23,6 @@ class StudentFormModel extends Model
       'pager' => $this->pager
     ];
   }
-  // if (!empty($searchData)) {
-    //   $this->groupStart()
-    //     ->like('rollNo', $searchData)
-    //     ->orLike('fname', $searchData)
-    //     ->orLike('lname', $searchData)
-    //     ->orLike('father_name', $searchData)
-    //     ->orLike('dob', $searchData)
-    //     ->orLike('mobile', $searchData)
-    //     ->orLike('email', $searchData)
-    //     ->orLike('gender', $searchData)
-    //     ->orLike('teacher_id', $searchData)
-    //     ->orLike('teacher_name', $searchData)
-    //     ->orLike('department', $searchData)
-    //     ->orLike('course', $searchData)
-    //     ->orLike('city', $searchData)
-    //     ->orLike('address', $searchData)
-    //     ->groupEnd();
-    // }
 
   public function getAllItems($page = 1)
   {
@@ -64,10 +46,25 @@ class StudentFormModel extends Model
     $result = $this->db->table('studentregisterationform')
       ->where('id', $id)
       ->update($data);
+      return $result;
   }
 
   public function insertItem($data)
   {
+    // $existingId = $this->where('id', $data['id'])->first();
+    // if($existingId){
+    //   return false;
+    // }
+    $result = $this->db->table('studentregisterationform')
+      ->insert($data);
+    return $result;
+  }
+  public function insertItemMock($data)
+  {
+    $existingId = $this->where('id', $data['id'])->first();
+    if($existingId){
+      return false;
+    }
     $result = $this->db->table('studentregisterationform')
       ->insert($data);
     return $result;
@@ -83,8 +80,8 @@ class StudentFormModel extends Model
   public function genderCountById($teacherId)
   {
     return $this->select("
-        SUM(CASE WHEN gender = 'male' THEN 1 ELSE 0 END) as male_count,
-        SUM(CASE WHEN gender = 'female' THEN 1 ELSE 0 END) as female_count
+        SUM(CASE WHEN gender = 'Male_x' THEN 1 ELSE 0 END) as male_count,
+        SUM(CASE WHEN gender = 'Female_y' THEN 1 ELSE 0 END) as female_count
     ")
       ->where('teacher_id', $teacherId)
       ->first();

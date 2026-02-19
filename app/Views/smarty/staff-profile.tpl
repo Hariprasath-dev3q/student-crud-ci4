@@ -43,7 +43,7 @@
     <div class="card w-50 profile-card">
       <div class="card-header ">
 
-        Student Profile
+        Staff Profile
       </div>
 
       <div class="card-body">
@@ -53,7 +53,7 @@
               style="width: 60px; height: 60px;">
             <div class="row">
               <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Staff Name:</span> {$studentData.teacherName|default:'N/A'}</p>
+                <p class="text-black"><span class="label text-black">Staff Name:</span> {$studentData.teacher_name|default:'N/A'}</p>
               </div>
               <div class="col-md-6">
                 <p class="text-black"><span class="label text-black">Email:</span> {$studentData.email|default:"N/A"}</p>

@@ -7,7 +7,7 @@
           aria-expanded="false">
           <img src="{$base_url}images/img2.jpg" alt="Profile" class="rounded-circle me-2"
             style="width: 25px; height: 25px;">
-          <p class="text-white">Welcome, {$studentData.teacherName|default:"Guest"}</p>
+          <p class="text-white">Welcome, {$studentData.teacher_name|default:"Guest"}</p>
         </button>
         <ul class="dropdown-menu dropdown-menu-end me-0">
           <li><a class="dropdown-item" href="{$base_url}studentform/profile">Profile

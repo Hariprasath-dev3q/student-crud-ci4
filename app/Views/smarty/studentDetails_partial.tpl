@@ -40,7 +40,7 @@
           <td>{$item.mobile}</td>
           <td>{$item.email}</td>
           <td>{$item.password}</td>
-          <td>{$item.gender}</td>
+          <td class="gender">{$item.gender}</td>
           <td>{$item.department}</td>
           <td>{$item.course}</td>
           <td>{$item.teacher_id}</td>

@@ -34,7 +34,7 @@ $routes->group('studentform', function ($routes) {
 
 // using mock api in postman collection
 $routes->group('students', function($routes){
-  $routes->get('/', "StudentForm::index");
+  $routes->get('/', "StudentForm::formDetails");
   $routes->post('/', "StudentForm::store");
   $routes->put('(:num)', "StudentForm::update/$1");
   $routes->delete('(:num)', "StudentForm::delete/$1");
@@ -54,4 +54,6 @@ $routes->group('insertData', function ($routes) {
   $routes->post('export-excel', 'InsertData::exportData');
   $routes->post('sample-excel', 'InsertData::sampleExcel');
   $routes->post('delete-multiple', 'InsertData::deleteMultiple');
+  
 });
+$routes->get('test', 'InsertData::testRedis');

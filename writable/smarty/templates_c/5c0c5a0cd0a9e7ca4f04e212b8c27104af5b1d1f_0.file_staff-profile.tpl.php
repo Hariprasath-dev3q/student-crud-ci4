@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-17 13:37:55
+/* Smarty version 5.7.0, created on 2026-02-18 11:33:25
   from 'file:staff-profile.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_69946f339c52a3_90197622',
+  'unifunc' => 'content_6995a385412c32_64495444',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5c0c5a0cd0a9e7ca4f04e212b8c27104af5b1d1f' => 
     array (
       0 => 'staff-profile.tpl',
-      1 => 1771335472,
+      1 => 1771414403,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_69946f339c52a3_90197622 (\Smarty\Template $_smarty_tpl) {
+function content_6995a385412c32_64495444 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -85,7 +85,7 @@ insertData/display" class="list-group-item list-group-item-action">
     <div class="card w-50 profile-card">
       <div class="card-header ">
 
-        Student Profile
+        Staff Profile
       </div>
 
       <div class="card-body">
@@ -96,7 +96,7 @@ images/img2.jpg" alt="Profile" class="rounded-circle me-2 custom-header-img mt-2
               style="width: 60px; height: 60px;">
             <div class="row">
               <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Staff Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacherName'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
+                <p class="text-black"><span class="label text-black">Staff Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacher_name'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
 </p>
               </div>
               <div class="col-md-6">

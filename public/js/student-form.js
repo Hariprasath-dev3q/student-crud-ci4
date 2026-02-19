@@ -47,7 +47,7 @@ async function submitData(e) {
 
   $("#formId [required]").each(function () {
     validateRequired($(this));
-    isValid = true;
+    // isValid = true;
   });
 
   validateRegex(
@@ -60,6 +60,7 @@ async function submitData(e) {
   validateChecked("input[name='department[]']");
 
   setBorder($("#multiSelect"), !!$("#multiSelect").val());
+  setBorder($("#teacher_id"), !!$("#teacher_id").val());
 
   if (!isValid) {
     setError("All fields are required. Please check highlighted inputs.");
@@ -104,19 +105,17 @@ async function submitData(e) {
     city: $("#city").val(),
     address: $("#address").val(),
   };
-  
+
   const editId = $("#edit_id").val();
   if (editId) data.editId = editId;
 
-  if (editId) {
-    url = base_url + "students/" + editId;
-    method = "PUT";
-  }
-  // console.log('ddd');
-  // return;
+  // if (editId) {
+  //   url = base_url + "students/" + editId;
+  //   method = "PUT";
+  // }
   $.ajax({
-    // url: base_url + "studentform/save-items",
-    url: base_url + "students",
+    url: base_url + "studentform/save-items",
+    // url: base_url + "students",
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify(data),
@@ -153,10 +152,10 @@ function deleteOne(id, photoUrl) {
   let currentPage = $("#current-page").val() || 1;
   data.page = currentPage;
   $.ajax({
-    // url: base_url + "studentform/delete-item",
-    url: base_url + "students/" + id,
-    // method: "POST",
-    method: "DELETE",
+    url: base_url + "studentform/delete-item",
+    method: "POST",
+    // url: base_url + "students/" + id,
+    // method: "DELETE",
     dataType: "json",
     data: data,
     success: function (res) {
@@ -217,13 +216,16 @@ function exportDataJS() {
   });
 }
 
-  function globalSearch() {
-    var searchData = $("#globalSearchData").val().toLowerCase().trim();
-    $('#studentTable tbody tr').filter(function(){
-      $(this).toggle($(this).text().toLowerCase().indexOf(searchData) > -1);
-    });
-    
-  }
+function globalSearch() {
+  var searchData = $("#globalSearchData").val().trim();
+  console.log(searchData);
+  $("#studentTable tbody tr").filter(function () {
+    var rowText = $(this).text();
+    console.log(rowText);
+    console.log(rowText.indexOf(searchData));
+    $(this).toggle(rowText.indexOf(searchData) > -1);
+  });
+}
 
 function deleteAllUsers() {
   var selectedIds = [];

@@ -24,26 +24,6 @@
   <script src="{$base_url}js/student-management.js"></script>
   <link href="{$base_url}css/style.css" rel="stylesheet">
 
-  {* <style>
-    .login-form {
-      background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%) !important;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      position: relative;
-    }
-
-    #password{
-
-    }
-    .custom-eye{
-      position: absolute;
-      right: 50px;
-      top: 214px;
-      cursor: pointer;
-    }
-  </style> *}
-
 </head>
 
 <body>
@@ -63,10 +43,6 @@
         <label for="email" class="form-label">Email address</label>
         <input type="email" class="form-control" id="email" name="email" value="{$cookieEmail|default: ''}" required>
       </div>
-      {* <div class="form-check mb-3">
-        <input type="checkbox" name="remember" id="remember" class="form-check-input" />
-        <label for="remember" class="form-check-label">Remember me</label>
-      </div> *}
       <div class="mb-3">Already have an account?
         <a href="{$base_url}" class="">Login</a>
       </div>

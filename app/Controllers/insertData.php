@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -22,6 +21,9 @@ class InsertData extends BaseController
   protected $studentForm;
   protected $smarty;
 
+  private const CACHE_NAMESPACE = 'user';
+  private const CACHE_TTL       = 3600;
+
   public function __construct()
   {
     $this->redis       = new RedisManager();
@@ -30,9 +32,13 @@ class InsertData extends BaseController
     $this->smarty      = new Smarty();
 
     $this->smarty->assign('base_url', base_url());
-    $this->smarty->assign('no_data', "No Data Found!");
+    $this->smarty->assign('no_data', 'No Data Found!');
   }
 
+  private function pageKey(int $page): string
+  {
+    return 'page_' . $page;
+  }
 
   public function validateDob($dob)
   {
@@ -57,7 +63,7 @@ class InsertData extends BaseController
       'Y-m-d H:i:s',
       'd/m/Y',
       'm/d/Y',
-      'n/j/Y'
+      'n/j/Y',
     ];
 
     foreach ($formats as $format) {
@@ -69,7 +75,6 @@ class InsertData extends BaseController
 
     return false;
   }
-
 
   public function importExcel()
   {
@@ -84,7 +89,7 @@ class InsertData extends BaseController
 
     if (!in_array($extension, ['xls', 'xlsx'])) {
       return redirect()->to('insertData/display')
-        ->with('error', 'Only .xls or .xlsx allowed');
+        ->with('error', 'Only .xls or .xlsx files are allowed');
     }
 
     try {
@@ -98,13 +103,10 @@ class InsertData extends BaseController
 
     if (count($sheetData) <= 1) {
       return redirect()->to('insertData/display')
-        ->with('error', 'Excel file is empty');
+        ->with('error', 'Excel file is empty or has no data rows');
     }
 
-    $header = array_map(function ($value) {
-      return trim($value);
-    }, $sheetData[0]);
-
+    $header = array_map('trim', $sheetData[0]);
     unset($sheetData[0]);
 
     $requiredFields = [
@@ -120,7 +122,7 @@ class InsertData extends BaseController
       'DEPARTMENT',
       'COURSE',
       'CITY',
-      'ADDRESS'
+      'ADDRESS',
     ];
 
     $missingHeaders = array_diff($requiredFields, $header);
@@ -135,16 +137,14 @@ class InsertData extends BaseController
     $mobilePattern = "/^[6-9]\d{9}$/";
     $emailPattern  = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
     $rowNumber     = 2;
-    $page          = $this->request->getVar('page') ?? 1;
 
     foreach ($sheetData as $row) {
-
       $rowData      = array_combine($header, $row);
       $rowDataLower = array_change_key_case($rowData, CASE_LOWER);
       $missing      = false;
 
       foreach ($requiredFields as $field) {
-        if (!isset($rowData[$field]) || trim($rowData[$field]) === '') {
+        if (!isset($rowData[$field]) || trim((string) $rowData[$field]) === '') {
           $errors[] = "Row {$rowNumber}: {$field} is required";
           $missing  = true;
           break;
@@ -195,14 +195,13 @@ class InsertData extends BaseController
 
     if (empty($data)) {
       return redirect()->to('insertData/display')
-        ->with('error', implode(', ', $errors));
+        ->with('error', 'No valid records found. Errors: ' . implode(', ', $errors));
     }
 
     try {
-      $this->redis->flushAll();
-      $this->redis->delete('user_', 'page_' . $page);
       $this->model->insertItem($data);
-      $this->redis->clearNamespace('user_');
+
+      $this->redis->clearNamespace(self::CACHE_NAMESPACE);
 
       return redirect()->to('insertData/display')
         ->with('success', count($data) . ' record(s) imported successfully');
@@ -211,6 +210,7 @@ class InsertData extends BaseController
         ->with('error', 'Database error: ' . $e->getMessage());
     }
   }
+
 
   public function sampleExcel()
   {
@@ -232,7 +232,7 @@ class InsertData extends BaseController
       'DEPARTMENT',
       'COURSE',
       'CITY',
-      'ADDRESS'
+      'ADDRESS',
     ];
 
     $sheet->fromArray($headers, null, 'A1');
@@ -243,33 +243,32 @@ class InsertData extends BaseController
       'font' => ['bold' => true],
       'fill' => [
         'fillType'   => Fill::FILL_SOLID,
-        'startColor' => ['rgb' => 'C6EFCE']
+        'startColor' => ['rgb' => 'C6EFCE'],
       ],
       'alignment' => [
         'horizontal' => Alignment::HORIZONTAL_CENTER,
-        'vertical'   => Alignment::VERTICAL_CENTER
+        'vertical'   => Alignment::VERTICAL_CENTER,
       ],
       'borders' => [
         'allBorders' => [
           'borderStyle' => Border::BORDER_THIN,
-          'color'       => ['rgb' => '000000']
-        ]
-      ]
+          'color'       => ['rgb' => '000000'],
+        ],
+      ],
     ]);
 
     foreach (range('A', $lastColumn) as $col) {
       $sheet->getColumnDimension($col)->setAutoSize(true);
     }
 
-    $writer   = new Xlsx($spreadsheet);
-    $tempFile = WRITEPATH . 'exports/' . $fileName;
-    $writer->save($tempFile);
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment; filename="' . $fileName . '"');
+    header('Cache-Control: max-age=0');
 
-    return $this->response
-      ->download($tempFile, null)
-      ->setFileName($fileName);
+    $writer = new Xlsx($spreadsheet);
+    $writer->save('php://output');
+    exit;
   }
-
 
   public function exportData()
   {
@@ -278,12 +277,11 @@ class InsertData extends BaseController
     if (empty($items)) {
       return $this->response->setJSON([
         'status'  => 0,
-        'message' => 'No data found'
+        'message' => 'No data found',
       ]);
     }
 
-    $fileName = 'students-export-' . date('Ymd_His') . '.xlsx';
-
+    $fileName    = 'students-export-' . date('Ymd_His') . '.xlsx';
     $spreadsheet = new Spreadsheet();
     $sheet       = $spreadsheet->getActiveSheet();
 
@@ -301,7 +299,7 @@ class InsertData extends BaseController
       'DEPARTMENT',
       'COURSE',
       'CITY',
-      'ADDRESS'
+      'ADDRESS',
     ];
 
     $sheet->fromArray($headers, null, 'A1');
@@ -309,7 +307,6 @@ class InsertData extends BaseController
     $row = 2;
     foreach ($items as $item) {
       unset($item['file']);
-
       $column = 'A';
       foreach ($item as $value) {
         $sheet->setCellValue($column . $row, $value);
@@ -324,39 +321,37 @@ class InsertData extends BaseController
       'font' => ['bold' => true],
       'fill' => [
         'fillType'   => Fill::FILL_SOLID,
-        'startColor' => ['rgb' => 'C6EFCE']
+        'startColor' => ['rgb' => 'C6EFCE'],
       ],
       'alignment' => [
         'horizontal' => Alignment::HORIZONTAL_CENTER,
-        'vertical'   => Alignment::VERTICAL_CENTER
+        'vertical'   => Alignment::VERTICAL_CENTER,
       ],
       'borders' => [
         'allBorders' => [
           'borderStyle' => Border::BORDER_THIN,
-          'color'       => ['rgb' => '000000']
-        ]
-      ]
+          'color'       => ['rgb' => '000000'],
+        ],
+      ],
     ]);
 
     foreach (range('A', $lastColumn) as $col) {
       $sheet->getColumnDimension($col)->setAutoSize(true);
     }
 
-    $writer   = new Xlsx($spreadsheet);
-    $tempFile = WRITEPATH . 'exports/' . $fileName;
-
+    $writer = new Xlsx($spreadsheet);
     $writer->setPreCalculateFormulas(false);
-    $writer->save($tempFile);
 
-    $fileContent = file_get_contents($tempFile);
-    unlink($tempFile);
+    ob_start();
+    $writer->save('php://output');
+    $fileContent = ob_get_clean();
 
     return $this->response
       ->setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
       ->setHeader('Content-Disposition', 'attachment; filename="' . $fileName . '"')
+      ->setHeader('Cache-Control', 'max-age=0')
       ->setBody($fileContent);
   }
-
 
   public function deleteMultiple()
   {
@@ -365,32 +360,33 @@ class InsertData extends BaseController
     if (empty($ids) || !is_array($ids)) {
       return $this->response->setJSON([
         'status'  => 0,
-        'message' => 'No IDs provided'
+        'message' => 'No IDs provided',
       ]);
     }
 
     $this->model->deleteByIds($ids);
-    $this->redis->clearNamespace('user');
+
+    $this->redis->clearNamespace(self::CACHE_NAMESPACE);
 
     return $this->response->setJSON([
       'status'  => 1,
-      'message' => 'Selected records deleted successfully'
+      'message' => 'Selected records deleted successfully',
     ]);
   }
 
   public function displayStudentDetails()
   {
-    $isLoggedIn = session()->get('isLoggedIn');
-    if (!$isLoggedIn) {
-      return redirect()->to('/');
+    $page    = (int) ($this->request->getGet('page') ?? 1);
+    $cacheKey = $this->pageKey($page);
+
+    $data = $this->redis->get(self::CACHE_NAMESPACE, $cacheKey);
+
+    if ($data === null) {
+      $data = $this->model->getItemsPaginated($page);
+
+      $this->redis->set(self::CACHE_NAMESPACE, $cacheKey, $data, self::CACHE_TTL);
     }
 
-    $studentData = session()->get('studentData');
-    $page = $this->request->getGet('page') ?? 1;
-
-    $data = $this->model->getItemsPaginated($page);
-
-    $this->smarty->assign('studentData', $studentData);
     $this->smarty->assign('items', $data['items']);
     $this->smarty->assign('totalPages', $data['totalPages']);
     $this->smarty->assign('currentPage', $data['currentPage']);

@@ -40,46 +40,49 @@ class StudentForm extends BaseController
     return $this->smarty->display('staff-profile.tpl');
   }
 
-  // public function index()
-  // {
-
-  //   $isLoggedIn = session()->get('isLoggedIn');
-  //   if (!$isLoggedIn) {
-  //     return redirect()->to('/');
-  //   }
-
-  //   $studentData = session()->get('studentData');
-
-  //   $item = new \stdClass();
-  //   $item->rollNo = '';
-  //   $item->fname = '';
-  //   $item->lname = '';
-  //   $item->father_name = '';
-  //   $item->dob = '';
-  //   $item->mobile = '';
-  //   $item->email = '';
-  //   $item->password = '';
-  //   $item->gender = '';
-  //   $item->department = '';
-  //   $item->course = '';
-  //   $item->file = '';
-  //   $item->city = '';
-  //   $item->address = '';
-  //   $item->id = '';
-
-  //   $teachers = $this->StaffLoginModel->getallStaffs();
-
-  //   $this->smarty->assign('teachers', $teachers);
-  //   $this->smarty->assign('studentData', $studentData);
-  //   $this->smarty->assign('item', (array)$item);
-  //   return $this->smarty->display('studentForm.tpl');
-  // }
-
   public function index()
+  {
+
+    $isLoggedIn = session()->get('isLoggedIn');
+    if (!$isLoggedIn) {
+      return redirect()->to('/');
+    }
+
+    $studentData = session()->get('studentData');
+
+    $item = new \stdClass();
+    $item->rollNo = '';
+    $item->fname = '';
+    $item->lname = '';
+    $item->father_name = '';
+    $item->dob = '';
+    $item->mobile = '';
+    $item->email = '';
+    $item->password = '';
+    $item->gender = '';
+    $item->teacher_id = '';
+    $item->teacher_name = '';
+    $item->department = '';
+    $item->course = '';
+    $item->file = '';
+    $item->city = '';
+    $item->address = '';
+    $item->id = '';
+
+    $teachers = $this->StaffLoginModel->getallStaffs();
+
+    $this->smarty->assign('teachers', $teachers);
+    $this->smarty->assign('studentData', $studentData);
+    $this->smarty->assign('item', (array)$item);
+    return $this->smarty->display('studentForm.tpl');
+  }
+
+  // mock api functions
+  public function formDetails()
   {
     $page = $this->request->getGet('page') ?? 1;
     $data = $this->fileCache->get('student_list' . $page);
-    $data = $this->StudentFormModel->findAllItems();
+    // $data = $this->StudentFormModel->findAllItems();
     if ($data === null) {
       $data = $this->StudentFormModel->findAllItems();
       $this->fileCache->save('student_list' . $page, $data, 3600);
@@ -94,11 +97,22 @@ class StudentForm extends BaseController
     for ($i = 1; $i <= 100; $i++) {
       $this->fileCache->delete('student_list' . $i);
     }
-    $this->StudentFormModel->insertItem($data);
-    return $this->response->setJSON([
-      'status' => 1,
-      'message' => 'Student created successfully'
-    ]);
+    $response = $this->StudentFormModel->insertItemMock($data);
+    if ($response === false) {
+      return $this->response
+        ->setStatusCode(401)
+        ->setJSON([
+          'status' => 0,
+          'message' => 'Student creation failed'
+        ]);
+    } else {
+      return $this->response
+        ->setStatusCode(200)
+        ->setJSON([
+          'status' => 1,
+          'message' => 'Student created successfully'
+        ]);
+    }
   }
 
   public function update($id)
@@ -107,23 +121,44 @@ class StudentForm extends BaseController
     for ($i = 1; $i <= 100; $i++) {
       $this->fileCache->delete('student_list' . $i);
     }
-    $this->StudentFormModel->updateItemById($id, $data);
-    return $this->response->setJSON([
-      'status' => 1,
-      'message' => 'Student updated successfully'
-    ]);
+    $response = $this->StudentFormModel->updateItemById($id, $data);
+    if ($response) {
+      return $this->response
+        ->setStatusCode(200)
+        ->setJSON([
+          'status' => 1,
+          'message' => 'Student updated successfully'
+        ]);
+    } else {
+      return $this->response
+        ->setStatusCode(401)
+        ->setJSON([
+          'status' => 0,
+          'message' => 'Student updation failed'
+        ]);
+    }
   }
 
   public function delete($id)
   {
-    // $data = $this->request->getJSON(true);
     $page = $this->request->getVar('page') ?? 1;
     $this->StudentFormModel->deleteItemById($id);
-    $this->fileCache->delete('student_list' . $page);
-    return $this->response->setJSON([
-      'status' => 1,
-      'message' => 'Student deleted successfully'
-    ]);
+    $response = $this->fileCache->delete('student_list' . $page);
+    if ($response===true) {
+      return $this->response
+        ->setStatusCode(401)
+        ->setJSON([
+          'status' => 1,
+          'message' => 'Student deleted Failed'
+        ]);
+    } else {
+      return $this->response
+        ->setStatusCode(200)
+        ->setJSON([
+          'status' => 0,
+          'message' => 'Student deleted successfully'
+        ]);
+    }
   }
 
   public function filterByTeacher()
@@ -136,6 +171,8 @@ class StudentForm extends BaseController
 
     return $this->response->setJSON($data);
   }
+
+  // *********ends here*******
 
   public function deleteItem()
   {
@@ -216,12 +253,16 @@ class StudentForm extends BaseController
     $studentData = session()->get('studentData');
 
     $item = $this->StudentFormModel->getItemById($id);
+    $staff = $this->StaffLoginModel->getallStaffs();
 
     if (!$item) {
       throw PageNotFoundException::forPageNotFound();
     }
     $item['password'] = $this->decryptText($item['password']);
+    $teachers = $this->StaffLoginModel->getallStaffs();
 
+    $this->smarty->assign('teachers', $teachers);
+    $this->smarty->assign('staff', $staff);
     $this->smarty->assign('studentData', $studentData);
     $this->smarty->assign('item', $item);
     return $this->smarty->display('studentForm.tpl');
@@ -271,21 +312,22 @@ class StudentForm extends BaseController
       }
 
       $rules = [
-        'studentRollNo' => 'required|max_length[25]|trim',
-        'studentFirstName' => 'required|max_length[35]|trim',
-        'studentLastName' => 'required|max_length[25]|trim',
-        'fatherName' => 'required|max_length[35]|trim',
-        'dateOfBirth' => 'required|valid_date',
-        'mobileNumber' => 'required|numeric|exact_length[10]|trim',
-        'email' => 'required|valid_email|max_length[50]|trim',
-        'password' => 'required|min_length[6]|max_length[8]|trim',
-        'gender' => 'required|in_list[male,female]|trim',
-        'department' => 'required',
-        'course' => 'required',
-        'file' => 'permit_empty|uploaded[file]|max_size[file,2048]|is_image[file]',
-        'city' => 'required|max_length[35]|trim',
-        'address' => 'required|max_length[70]|trim',
+        'studentRollNo'     => 'required|max_length[25]|trim',
+        'studentFirstName'  => 'required|max_length[35]|trim',
+        'studentLastName'   => 'required|max_length[25]|trim',
+        'fatherName'        => 'required|max_length[35]|trim',
+        'dateOfBirth'       => 'required|valid_date',
+        'mobileNumber'      => 'required|numeric|exact_length[10]|trim',
+        'email'             => 'required|valid_email|max_length[50]|trim',
+        'password'          => 'required|min_length[6]|max_length[8]|trim',
+        'gender'            => 'required|in_list[Male_x,Female_y]|trim',
+        'department'        => 'required',
+        'course'            => 'required',
+        'file'              => 'permit_empty|uploaded[file]|max_size[file,2048]|is_image[file]',
+        'city'              => 'required|max_length[35]|trim',
+        'address'           => 'required|max_length[70]|trim',
       ];
+
 
       $data = [
         'studentRollNo' => $json->studentRollNo ?? '',

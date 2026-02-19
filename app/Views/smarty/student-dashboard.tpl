@@ -18,60 +18,10 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     base_url = '{$base_url}';
-    console.log("Base URL:", base_url);
   </script>
   <script src="{$base_url}js/student-management.js"></script>
   <script src="{$base_url}js/student-form.js"></script>
-  <link href="{$base_url}css/style.css" rel="stylesheet">
-
-  {* <style>
-    body {
-      overflow-x: hidden;
-    }
-
-    .custom-dropdown {
-      height: auto;
-    }
-
-    .dropdown-toggle {
-      height: auto;
-      padding: 8px 16px !important;
-      display: flex;
-      align-items: center;
-      white-space: nowrap;
-    }
-
-    .dropdown-toggle p {
-      margin: 0;
-    }
-
-    sidebar {
-      position: fixed;
-      top: 58px;
-      left: 0;
-      width: 200px;
-      height: calc(100% - 58px);
-      background-color: #f8f9fa;
-      padding: 20px;
-    }
-
-    sidebar a {
-      transition: 0.2s ease;
-    }
-
-    sidebar a:hover {
-      transform: translateX(5px);
-    }
-
-    .main-content {
-      margin-left: 220px;
-    }
-
-    .dashboard-header {
-      background: linear-gradient(90deg, #4e73df, #224abe);
-      color: white;
-    }
-  *}
+  <link href="{$base_url}css/style.css" rel="stylesheet">   
 
 </head>
 
@@ -90,7 +40,7 @@
   </sidebar>
   <div class="container mt-5 main-content">
 
-    <h2>Welcome, {$studentData.teacherName|default:"Guest"}</h2>
+    <h2>Welcome, {$studentData.teacher_name|default:"Guest"}</h2>
 
     <div class="card mt-3" style="width: 18rem;">
       <div class="card-body">

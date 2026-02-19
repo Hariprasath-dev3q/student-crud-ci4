@@ -22,92 +22,6 @@
   <script src="{$base_url}js/student-form.js"></script>
   <script src="{$base_url}js/student-management.js"></script>
 
-  {* <style>
-    .custom-edit-icon {
-      color: black;
-    }
-
-    .custom-del-icon {
-      color: red;
-    }
-
-    th,
-    td {
-      border: 1px solid black !important;
-    }
-
-    img {
-      width: 150px;
-    }
-
-    .pagination {
-      margin-top: 20px;
-
-    }
-
-    .dropdown {
-      margin-bottom: 20px;
-      width: 100dvw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .dropdown select,
-    option {
-      padding: 10px 15px;
-      border-radius: 5px;
-      background-color: #f8f8f8;
-      border: 1px solid #ddd;
-      color: #333;
-    }
-    body {
-      overflow-x: hidden;
-    }
-
-    .custom-dropdown {
-      height: auto;
-    }
-
-    .dropdown-toggle {
-      height: auto;
-      padding: 8px 16px !important;
-      display: flex;
-      align-items: center;
-      white-space: nowrap;
-    }
-
-    .dropdown-toggle p {
-      margin: 0;
-    }
-
-    sidebar {
-      position: fixed;
-      top: 58px;
-      left: 0;
-      width: 200px;
-      height: calc(100% - 58px);
-      background-color: #f8f9fa;
-      padding: 20px;
-    }
-
-    sidebar a {
-      transition: 0.2s ease;
-    }
-
-    sidebar a:hover {
-      transform: translateX(5px);
-    }
-
-    .main-content {
-      margin-left: 220px;
-    }
-
-    .dashboard-header {
-      background: linear-gradient(90deg, #4e73df, #224abe);
-      color: white;
-    }
-  </style> *}
 
 </head>
 
@@ -129,7 +43,7 @@
   <div class="container main-content mt-3">
     <div class="col-md-12 mb-3 d-flex ">
       <div class="d-flex justify-content-start">
-        <a href="{$addUserUrl}" class="btn btn-primary mb-3 text-decoration-none text-white">Add User</a>
+        <a href="{$addUserUrl}" class="btn btn-primary mb-3 text-decoration-none text-white">Add Student</a>
       </div>
       <div class="input-group ms-3 mb-3 w-25">
         <input type="text" class="form-control" id="globalSearchData" name="globalSearchData" placeholder="Search" onkeyup="globalSearch()" >

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-17 13:06:27
+/* Smarty version 5.7.0, created on 2026-02-18 06:57:11
   from 'file:studentDetails_partial.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_699467d3584908_73897048',
+  'unifunc' => 'content_699562c744c207_42180374',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'aa03b7e59449eb83c6545a36d4e72b4e0975b35d' => 
     array (
       0 => 'studentDetails_partial.tpl',
-      1 => 1771333523,
+      1 => 1771397549,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_699467d3584908_73897048 (\Smarty\Template $_smarty_tpl) {
+function content_699562c744c207_42180374 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><input type="hidden" id="current-page" value="<?php echo $_smarty_tpl->getValue('pager')->getCurrentPage();?>
 " />
@@ -80,7 +80,7 @@ $foreach0DoElse = false;
 </td>
           <td><?php echo $_smarty_tpl->getValue('item')['password'];?>
 </td>
-          <td><?php echo $_smarty_tpl->getValue('item')['gender'];?>
+          <td class="gender"><?php echo $_smarty_tpl->getValue('item')['gender'];?>
 </td>
           <td><?php echo $_smarty_tpl->getValue('item')['department'];?>
 </td>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-17 13:39:57
+/* Smarty version 5.7.0, created on 2026-02-18 13:23:06
   from 'file:student-dashboard.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_69946fad3b06c2_35907101',
+  'unifunc' => 'content_6995bd3aaba4b7_34905987',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a58747472e8f5fefe4c2a6b9a832e138a6fa3c45' => 
     array (
       0 => 'student-dashboard.tpl',
-      1 => 1771335594,
+      1 => 1771420528,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_69946fad3b06c2_35907101 (\Smarty\Template $_smarty_tpl) {
+function content_6995bd3aaba4b7_34905987 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -49,7 +49,6 @@ $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 >
     base_url = '<?php echo $_smarty_tpl->getValue('base_url');?>
 ';
-    console.log("Base URL:", base_url);
   <?php echo '</script'; ?>
 >
   <?php echo '<script'; ?>
@@ -61,9 +60,8 @@ js/student-management.js"><?php echo '</script'; ?>
 js/student-form.js"><?php echo '</script'; ?>
 >
   <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
-css/style.css" rel="stylesheet">
+css/style.css" rel="stylesheet">   
 
-  
 </head>
 
 <body>
@@ -84,7 +82,7 @@ insertData/display" class="list-group-item list-group-item-action">
   </sidebar>
   <div class="container mt-5 main-content">
 
-    <h2>Welcome, <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacherName'] ?? null)===null||$tmp==='' ? "Guest" ?? null : $tmp);?>
+    <h2>Welcome, <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacher_name'] ?? null)===null||$tmp==='' ? "Guest" ?? null : $tmp);?>
 </h2>
 
     <div class="card mt-3" style="width: 18rem;">

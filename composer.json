@@ -13,7 +13,7 @@
         "php": "^8.2",
         "codeigniter4/framework": "^4.7",
         "phpoffice/phpspreadsheet": "^5.4",
-        "predis/predis": "*",
+        "predis/predis": "^3.4",
         "smarty/smarty": "^5.7"
     },
     "require-dev": {

@@ -24,22 +24,47 @@ class StaffAuth extends BaseController
     }
 
     // mock api
-    public function mock_login(){
+    public function mock_login()
+    {
         $data = $this->request->getJSON(true);
-        $this->studentloginmodel->verifyLogin($data['email'], $data['password']);
-        return $this->response->setJSON([
+        $response = $this->studentloginmodel->verifyLogin($data['email'], $data['password']);
+        if ($response === false) {
+            return $this->response
+                ->setStatusCode(401)
+                ->setJSON([
+                'status' => 0,
+                'message' => 'Login Failed, Please SignUp!'
+            ]);
+        }
+        else{
+            return $this->response
+            ->setStatusCode(200)
+            ->setJSON([
             'status' => 1,
             'message' => 'Login Success'
         ]);
-    }   
+        }
+    }
 
-    public function mock_signup(){
+    public function mock_signup()
+    {
         $data = $this->request->getJSON(true);
-        $this->studentloginmodel->staffSignup($data['email'], $data['password'], $data['teacherName']);
-        return $this->response->setJSON([
-            'status' => 1,
-            'message' => 'Signup Success'
-        ]);
+        $response = $this->studentloginmodel->staffSignup($data['email'], $data['password'], $data['teacher_name']);
+        if ($response===false) {
+            return $this->response
+                ->setStatusCode(401)
+                ->setJSON([
+                'status' => 0,
+                'message' => 'Signup Failed or You already have an Account'
+            ]);
+        } else {
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                'status' => 1,
+                'message' => 'Signup Success'
+            ]);
+        }
     }
     // *************
     public function login()
@@ -111,7 +136,7 @@ class StaffAuth extends BaseController
                     'status' => 1,
                 ]);
             }
-            
+
             return redirect()->to('/');
         }
         return $this->smarty->display('staff-signup.tpl');
