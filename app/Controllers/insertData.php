@@ -13,6 +13,7 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Shared\Date as ExcelDate;
+use App\Models\StaffLoginModel;
 
 class InsertData extends BaseController
 {
@@ -20,6 +21,7 @@ class InsertData extends BaseController
   protected $model;
   protected $studentForm;
   protected $smarty;
+  protected $StaffLoginModel;
 
   private const CACHE_NAMESPACE = 'user';
   private const CACHE_TTL       = 3600;
@@ -30,9 +32,12 @@ class InsertData extends BaseController
     $this->model       = new StudentDetailsModel();
     $this->studentForm = new StudentForm();
     $this->smarty      = new Smarty();
+    $this->StaffLoginModel = new StaffLoginModel();
 
     $this->smarty->assign('base_url', base_url());
     $this->smarty->assign('no_data', 'No Data Found!');
+    $studentData = session()->get('studentData');
+    $this->smarty->assign('studentData', $studentData);
   }
 
   private function pageKey(int $page): string

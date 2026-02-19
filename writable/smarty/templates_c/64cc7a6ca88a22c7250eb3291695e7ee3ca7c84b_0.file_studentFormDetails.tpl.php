@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-13 11:46:33
+/* Smarty version 5.7.0, created on 2026-02-19 07:08:33
   from 'file:studentFormDetails.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_698f0f190f1967_95564129',
+  'unifunc' => 'content_6996b6f127f446_33458035',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '64cc7a6ca88a22c7250eb3291695e7ee3ca7c84b' => 
     array (
       0 => 'studentFormDetails.tpl',
-      1 => 1770972520,
+      1 => 1771484716,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentFormDetails_partial.tpl' => 1,
   ),
 ))) {
-function content_698f0f190f1967_95564129 (\Smarty\Template $_smarty_tpl) {
+function content_6996b6f127f446_33458035 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html>
@@ -61,7 +61,8 @@ js/student-form.js"><?php echo '</script'; ?>
 js/student-management.js"><?php echo '</script'; ?>
 >
 
-    <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
+  
+  <link href="<?php echo $_smarty_tpl->getValue('base_url');?>
 css/style.css" rel="stylesheet">
 </head>
 
