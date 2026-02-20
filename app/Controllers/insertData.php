@@ -14,7 +14,9 @@ use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Shared\Date as ExcelDate;
 use App\Models\StaffLoginModel;
-use TCPDF;
+use App\Libraries\CustomTCpdf;
+
+
 
 class InsertData extends BaseController
 {
@@ -23,6 +25,7 @@ class InsertData extends BaseController
   protected $studentForm;
   protected $smarty;
   protected $StaffLoginModel;
+  protected $custom_pdf;
 
   private const CACHE_NAMESPACE = 'user';
   private const CACHE_TTL       = 3600;
@@ -406,31 +409,36 @@ class InsertData extends BaseController
 
   public function generatePdf()
   {
+    $this->custom_pdf = new CustomTCpdf();
     $items = $this->model->findAllItems();
+    $this->custom_pdf->setTitle("Student Details");
 
-    $pdf = new TCPDF();
+    $key = "student_list";
+    $data = $this->redis->get(self::CACHE_NAMESPACE, $key);
 
-    $pdf->setTitle("Student Details");
-
-    $pdf->AddPage();
-
-    $pdf->setFont("helvetica", '', 8);
+    if($data === null){
+      $data = $items;
+      $this->redis->set(self::CACHE_NAMESPACE, $key, $data, self::CACHE_TTL);
+    }
+    
+    $this->custom_pdf->AddPage();
+    $this->custom_pdf->setFont("helvetica", '', 8);
 
     $htmlTable = '
       <table border="1" cellpadding="4">
-  <thead >
-    <tr style="background-color:#9dd49d; font-weight:bold;">
-      <th scope="col" width="7%">S.NO</th>
-      <th scope="col" width="10%" >ROLL NO</th>
-      <th scope="col"  width="17%" >STUDENT NAME</th>
-      <th scope="col">DOB</th>
-      <th scope="col">MOBILE</th>
-      <th scope="col" width="17%">EMAIL</th>
-      <th scope="col">GENDER</th>
-      <th scope="col">DEPARTMENT</th>
-    </tr>
-  </thead>
-  <tbody class="text-nowrap">';
+        <thead >
+          <tr style="background-color:#9dd49d; font-weight:bold;">
+            <th scope="col" width="7%" >S.NO</th>
+            <th scope="col" width="10%" >ROLL NO</th>
+            <th scope="col" width="17%" >STUDENT NAME</th>
+            <th scope="col">DOB</th>
+            <th scope="col">MOBILE</th>
+            <th scope="col" width="18%" >EMAIL</th>
+            <th scope="col">GENDER</th>
+            <th scope="col">DEPARTMENT</th>
+          </tr>
+        </thead>
+      <tbody class="text-nowrap">';
 
     if (!empty($items)) {
       $count = 1;
@@ -443,10 +451,12 @@ class InsertData extends BaseController
           <td width="17%" >' . $item['fname'] . ' ' . $item['lname'] . '</td>
           <td>' . $item['dob'] . '</td>
           <td>' . $item['mobile'] . '</td>
-          <td  width="17%">' . $item['email'] . '</td>
+          <td  width="18%">' . $item['email'] . '</td>
           <td>' . $item['gender'] . '</td>
           <td>' . $item['department'] . '</td>
-        </tr>';
+        </tr> 
+        
+        ';
       }
     } else {
       $htmlTable .= '
@@ -458,9 +468,8 @@ class InsertData extends BaseController
 
     $htmlTable .= '</tbody></table>';
 
-    $pdf->writeHTML($htmlTable, true, false, true, false, '');
-
-    $pdfContent = $pdf->Output("Student-data.pdf", 'S');
+    $this->custom_pdf->writeHTML($htmlTable, true, false, true, false, '');
+    $pdfContent = $this->custom_pdf->Output("Student-data.pdf", 'S');
 
     return $this->response
       ->setContentType('application/pdf')

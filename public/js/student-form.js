@@ -156,7 +156,7 @@ $(document).ready(() => {
                   let percentage =
                     total > 0
                       ? ((context.raw / total) * 100).toFixed(1)
-                      : 0;
+                      : 0; 
 
                   return (
                     context.label +
