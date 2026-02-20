@@ -283,6 +283,13 @@ class InsertData extends BaseController
   {
     $items = $this->model->findAllItems();
 
+    $key = "student_list_excel";
+    $data = $this->redis->get(self::CACHE_NAMESPACE, $key);
+    if($data===null){
+      $data = $items;
+      $this->redis->set(self::CACHE_NAMESPACE, $key, $data, self::CACHE_TTL);
+    }
+
     if (empty($items)) {
       return $this->response->setJSON([
         'status'  => 0,
