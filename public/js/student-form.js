@@ -119,14 +119,15 @@ $(document).ready(() => {
 
   // Doughnut Chart
   if (typeof genderData !== "undefined") {
+
     const boys = genderData.boys;
     const girls = genderData.girls;
 
-    const canvas = document.getElementById("genderChart");
+    const $canvas = $("#genderChart");
 
-    if (canvas) {
-      const ctx = document.getElementById('genderChart').getContext('2d');
+    if ($canvas.length) {
 
+      const ctx = $canvas[0].getContext("2d");
 
       new Chart(ctx, {
         type: "doughnut",
@@ -153,7 +154,10 @@ $(document).ready(() => {
                 label: function (context) {
                   let total = boys + girls;
                   let percentage =
-                    total > 0 ? ((context.raw / total) * 100).toFixed(1) : 0;
+                    total > 0
+                      ? ((context.raw / total) * 100).toFixed(1)
+                      : 0;
+
                   return (
                     context.label +
                     ": " +
@@ -185,7 +189,6 @@ async function submitData(e) {
   };
 
   const validateRequired = (el) => {
-    // Handle file inputs separately - they can't have their value set
     if (el.attr("type") === "file") {
       const hasFile = el[0].files.length > 0;
       setBorder(el, hasFile);
@@ -221,7 +224,7 @@ async function submitData(e) {
 
   $("#formId [required]").each(function () {
     validateRequired($(this));
-    // isValid = true;
+   
   });
 
   validateRegex(
