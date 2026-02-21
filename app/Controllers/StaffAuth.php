@@ -6,6 +6,7 @@ use App\Libraries\Smarty;
 use App\Models\StaffLoginModel;
 use App\Models\StudentFormModel;
 use App\Controllers\BaseController;
+use App\Customs\CustomQrCode;
 
 class StaffAuth extends BaseController
 {
@@ -32,17 +33,16 @@ class StaffAuth extends BaseController
             return $this->response
                 ->setStatusCode(401)
                 ->setJSON([
-                'status' => 0,
-                'message' => 'Login Failed, Please SignUp!'
-            ]);
-        }
-        else{
+                    'status' => 0,
+                    'message' => 'Login Failed, Please SignUp!'
+                ]);
+        } else {
             return $this->response
-            ->setStatusCode(200)
-            ->setJSON([
-            'status' => 1,
-            'message' => 'Login Success'
-        ]);
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 1,
+                    'message' => 'Login Success'
+                ]);
         }
     }
 
@@ -50,20 +50,20 @@ class StaffAuth extends BaseController
     {
         $data = $this->request->getJSON(true);
         $response = $this->studentloginmodel->staffSignup($data['email'], $data['password'], $data['teacher_name']);
-        if ($response===false) {
+        if ($response === false) {
             return $this->response
                 ->setStatusCode(401)
                 ->setJSON([
-                'status' => 0,
-                'message' => 'Signup Failed or You already have an Account'
-            ]);
+                    'status' => 0,
+                    'message' => 'Signup Failed or You already have an Account'
+                ]);
         } else {
             return $this->response
                 ->setStatusCode(200)
                 ->setJSON([
-                'status' => 1,
-                'message' => 'Signup Success'
-            ]);
+                    'status' => 1,
+                    'message' => 'Signup Success'
+                ]);
         }
     }
     // *************
@@ -152,10 +152,15 @@ class StaffAuth extends BaseController
         $studentData = session()->get('studentData');
         $studentCount = $this->StudentFormModel->getStudentCount($studentData['staffId']);
         // $genderCount = $this->StudentFormModel->genderCountById($student);
+        $qrCode = new CustomQrCode();
+        $qrCodeImg = $qrCode->qrcode($studentData['staffId']);
+        log_message('debug', 'QR Code Image: ' . substr($qrCodeImg, 0, 100));
+        $this->smarty->assign('qrCodeImg', $qrCodeImg);
 
-        log_message('debug', 'Dashboard studentData: ' . print_r($studentData, true));
+
+        // log_message('debug', 'Dashboard studentData: ' . print_r($studentData, true));
         $gender = $this->StudentFormModel->genderCountById($studentData['staffId']);
-        log_message('debug', 'Dashboard gender: ' . print_r($gender, true));
+        // log_message('debug', 'Dashboard gender: ' . print_r($gender, true));
         $this->smarty->assign('gender', $gender);
         $this->smarty->assign('studentData', $studentData);
         $this->smarty->assign('studentCount', $studentCount);

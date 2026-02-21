@@ -82,7 +82,7 @@ class Cache extends BaseConfig
      */
 
     public array $file = [
-        'storePath' => 'D:/wamp64/www/student-crud/writable/cache/',
+        'storePath' => WRITEPATH . 'cache/',
         'mode'      => 0640,
     ];
 

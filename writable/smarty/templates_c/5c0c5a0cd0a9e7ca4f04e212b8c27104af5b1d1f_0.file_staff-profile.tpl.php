@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.7.0, created on 2026-02-19 13:46:25
+/* Smarty version 5.7.0, created on 2026-02-21 10:44:49
   from 'file:staff-profile.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.7.0',
-  'unifunc' => 'content_6997143190df42_40007373',
+  'unifunc' => 'content_69998ca1e12bb2_48239941',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5c0c5a0cd0a9e7ca4f04e212b8c27104af5b1d1f' => 
     array (
       0 => 'staff-profile.tpl',
-      1 => 1771508608,
+      1 => 1771668969,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:studentHeader.tpl' => 1,
   ),
 ))) {
-function content_6997143190df42_40007373 (\Smarty\Template $_smarty_tpl) {
+function content_69998ca1e12bb2_48239941 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'D:\\wamp64\\www\\student-login\\app\\Views\\smarty';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -70,10 +70,11 @@ css/style.css" rel="stylesheet">
   <?php $_smarty_tpl->renderSubTemplate("file:studentHeader.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
   <div class="container-fluid mt-5 main-content">
-  <sidebar>
+    <sidebar>
       <div class="list-group">
         <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
-studentform/display" class="list-group-item list-group-item-action active" aria-current="true">
+studentform/display" class="list-group-item list-group-item-action active"
+          aria-current="true">
           <i class="fa-solid fa-user-plus"></i> Add student
         </a>
         <a href="<?php echo $_smarty_tpl->getValue('base_url');?>
@@ -95,16 +96,30 @@ images/img2.jpg" alt="Profile" class="rounded-circle me-2 custom-header-img mt-2
               style="width: 60px; height: 60px;">
             <div class="row">
               <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Staff Name:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacher_name'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
+                <p class="text-black"><span class="label text-black">Staff Name:</span>
+                  <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['teacher_name'] ?? null)===null||$tmp==='' ? 'N/A' ?? null : $tmp);?>
 </p>
               </div>
               <div class="col-md-6">
                 <p class="text-black"><span class="label text-black">Email:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['email'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
-</p>
+
+                </p>
               </div>
               <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Staff ID:</span> <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['staffId'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
+                <p class="text-black"><span class="label text-black">Staff ID:</span>
+                  <?php echo (($tmp = $_smarty_tpl->getValue('studentData')['staffId'] ?? null)===null||$tmp==='' ? "N/A" ?? null : $tmp);?>
 </p>
+              </div>
+              <div class="col-md-6 h-50">
+                <p class="text-black">
+                  <span class="label text-black">Qr Code:</span><br>
+                  <?php if ($_smarty_tpl->getValue('qrCodeImg')) {?>
+                    <img src="<?php echo $_smarty_tpl->getValue('qrCodeImg');?>
+" alt="QR Code" style="width:150px; height:150px;" />
+                  <?php } else { ?>
+                    N/A
+                  <?php }?>
+                </p>
               </div>
             </div>
           </figcaption>

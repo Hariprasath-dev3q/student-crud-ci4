@@ -12,6 +12,7 @@
     "require": {
         "php": "^8.2",
         "codeigniter4/framework": "^4.7",
+        "endroid/qr-code": "^6.1",
         "phpoffice/phpspreadsheet": "^5.4",
         "predis/predis": "^3.4",
         "smarty/smarty": "^5.7",

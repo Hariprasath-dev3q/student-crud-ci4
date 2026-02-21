@@ -29,19 +29,19 @@ $routes->group('studentform', function ($routes) {
   $routes->get('display/teacher', 'StudentForm::getItemsByName');
   $routes->get('(:num)', 'StudentForm::editItem/$1');
   $routes->post('delete-item', 'StudentForm::deleteItem');
-  
+  $routes->get('staff/details/(:num)', 'StudentForm::qrDetails/$1');
 });
 
 // using mock api in postman collection
-$routes->group('students', function($routes){
+$routes->group('students', function ($routes) {
   $routes->get('/', "StudentForm::formDetails");
   $routes->post('/', "StudentForm::store");
   $routes->put('(:num)', "StudentForm::update/$1");
   $routes->delete('(:num)', "StudentForm::delete/$1");
-  $routes->get('filter',"StudentForm::filterByTeacher");
+  $routes->get('filter', "StudentForm::filterByTeacher");
 });
 
-$routes->group('auth', function($routes){
+$routes->group('auth', function ($routes) {
   $routes->post('signup', 'StaffAuth::mock_signup');
   $routes->post('login', 'StaffAuth::mock_login');
 });
@@ -55,5 +55,4 @@ $routes->group('insertData', function ($routes) {
   $routes->post('sample-excel', 'InsertData::sampleExcel');
   $routes->post('delete-multiple', 'InsertData::deleteMultiple');
   $routes->post('generate-pdf', "InsertData::generatePdf");
-  
 });

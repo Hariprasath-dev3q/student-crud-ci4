@@ -15,6 +15,10 @@ class StaffLoginModel extends Model
     return $this->findAll();
   }
 
+  public function getStaffId($staffId){
+    return $this->where('staffId', $staffId)->first();
+  }
+
   public function verifyLogin($email, $password): bool|array
   {
     $email = trim($email);

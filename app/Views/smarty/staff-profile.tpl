@@ -30,9 +30,10 @@
 <body>
   {include file="studentHeader.tpl"}
   <div class="container-fluid mt-5 main-content">
-  <sidebar>
+    <sidebar>
       <div class="list-group">
-        <a href="{$base_url}studentform/display" class="list-group-item list-group-item-action active" aria-current="true">
+        <a href="{$base_url}studentform/display" class="list-group-item list-group-item-action active"
+          aria-current="true">
           <i class="fa-solid fa-user-plus"></i> Add student
         </a>
         <a href="{$base_url}insertData/display" class="list-group-item list-group-item-action">
@@ -52,13 +53,26 @@
               style="width: 60px; height: 60px;">
             <div class="row">
               <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Staff Name:</span> {$studentData.teacher_name|default:'N/A'}</p>
+                <p class="text-black"><span class="label text-black">Staff Name:</span>
+                  {$studentData.teacher_name|default:'N/A'}</p>
               </div>
               <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Email:</span> {$studentData.email|default:"N/A"}</p>
+                <p class="text-black"><span class="label text-black">Email:</span> {$studentData.email|default:"N/A"}
+                </p>
               </div>
               <div class="col-md-6">
-                <p class="text-black"><span class="label text-black">Staff ID:</span> {$studentData.staffId|default:"N/A"}</p>
+                <p class="text-black"><span class="label text-black">Staff ID:</span>
+                  {$studentData.staffId|default:"N/A"}</p>
+              </div>
+              <div class="col-md-6 h-50">
+                <p class="text-black">
+                  <span class="label text-black">Qr Code:</span><br>
+                  {if $qrCodeImg}
+                    <img src="{$qrCodeImg}" alt="QR Code" style="width:150px; height:150px;" />
+                  {else}
+                    N/A
+                  {/if}
+                </p>
               </div>
             </div>
           </figcaption>

@@ -84,6 +84,10 @@ class StudentFormModel extends Model
       ->first();
   }
 
+  public function getStudentsByStaffId($teacher_id){
+    return $this->where('teacher_id', $teacher_id)->findAll();
+  }
+
   public function findAllItems()
   {
     return $this->orderBy('id', 'ASC')->findAll();

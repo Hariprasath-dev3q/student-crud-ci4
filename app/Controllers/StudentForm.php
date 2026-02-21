@@ -8,6 +8,7 @@ use App\Models\StaffLoginModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use App\Controllers\BaseController;
 use stdClass;
+use App\Customs\CustomQrCode;
 
 class StudentForm extends BaseController
 {
@@ -36,8 +37,25 @@ class StudentForm extends BaseController
       return redirect()->to('/');
     }
     $studentData = session()->get('studentData');
+
+    $qrCode = new CustomQrCode();
+    $staffId = $studentData['staffId'];
+    $qrUrl = "http://172.16.200.128/student-login/public/studentform/staff/details/$staffId";
+    $qrCodeImg = $qrCode->qrcode($qrUrl);
+
+    $this->smarty->assign('qrCodeImg', $qrCodeImg);
+
     $this->smarty->assign('studentData', $studentData);
     return $this->smarty->display('staff-profile.tpl');
+  }
+
+  public function qrDetails($staffId)
+  {
+    $staffDetails = $this->StaffLoginModel->getStaffId($staffId);
+    $studentDetails = $this->StudentFormModel->getStudentsByStaffId($staffId);
+    $this->smarty->assign('staffDetails', $staffDetails);
+    $this->smarty->assign('studentDetails', $studentDetails);
+    return $this->smarty->display('qrDetails.tpl');
   }
 
   public function index()
@@ -144,7 +162,7 @@ class StudentForm extends BaseController
     $page = $this->request->getVar('page') ?? 1;
     $this->StudentFormModel->deleteItemById($id);
     $response = $this->fileCache->delete('student_list' . $page);
-    if ($response===true) {
+    if ($response === true) {
       return $this->response
         ->setStatusCode(401)
         ->setJSON([
