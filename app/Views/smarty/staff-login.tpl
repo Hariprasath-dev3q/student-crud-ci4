@@ -22,7 +22,8 @@
     console.log("Base URL:", base_url);
   </script>
   <script src="{$base_url}js/student-management.js"></script>
- <link href="{$base_url}css/style.css" rel="stylesheet">
+  <script src="{$base_url}js/student-form.js"></script>
+ {* <link href="{$base_url}css/style.css" rel="stylesheet"> *}
  
 </head>
 

@@ -151,16 +151,11 @@ class StaffAuth extends BaseController
         }
         $studentData = session()->get('studentData');
         $studentCount = $this->StudentFormModel->getStudentCount($studentData['staffId']);
-        // $genderCount = $this->StudentFormModel->genderCountById($student);
         $qrCode = new CustomQrCode();
         $qrCodeImg = $qrCode->qrcode($studentData['staffId']);
         log_message('debug', 'QR Code Image: ' . substr($qrCodeImg, 0, 100));
         $this->smarty->assign('qrCodeImg', $qrCodeImg);
-
-
-        // log_message('debug', 'Dashboard studentData: ' . print_r($studentData, true));
         $gender = $this->StudentFormModel->genderCountById($studentData['staffId']);
-        // log_message('debug', 'Dashboard gender: ' . print_r($gender, true));
         $this->smarty->assign('gender', $gender);
         $this->smarty->assign('studentData', $studentData);
         $this->smarty->assign('studentCount', $studentCount);

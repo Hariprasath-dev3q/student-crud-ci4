@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online bus ticket booking : AVM travels</title>
+    <!-- Base URL & Favicon  -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+
+    <!-- Fonts & Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- sal -->
+    <link rel="stylesheet" href="https://unpkg.com/sal.js/dist/sal.css" />
+    <script src="https://unpkg.com/sal.js/dist/sal.js"></script>
+    <!-- sal end -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- header section -->
+    <header>
+        <div class="top-header">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-auto">
+                        <ul>
+                            <li><i class="fas fa-phone custom-fas-icon"></i><a href="tel:7995144111">7995144111</a></li>
+                            <li><i class="fas fa-envelope custom-fas-icon"></i><a href="mailto:suresh1978gowni@gmail.com">suresh1978gowni@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-auto">
+                        <ul>
+                            <li><i class="fas fa-user custom-fas-icon"></i><a href="">Customer Login</a></li>
+                            <li><i class="fas fa-sign-in-alt custom-fas-icon"></i><a href="">Agent Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-header">
+            <div class="container">
+                <div class="row justify-content-between align-content-center">
+                    <div class="col-md-4">
+                        <a href="./"><img src="./assets/images/logo.png" alt="logo.png"></a>
+                    </div>
+                    <div class="col-md-8">
+                        <ul class="header-list">
+                            <li><a href="./" class="active-list">Home</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle dropdown-manage active-list" data-toggle="dropdown" href="javascript:;">Manage Ticket<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:;">Print Ticket</a></li>
+                                    <li><a href="javascript:;">Edit Ticket</a></li>
+                                    <li><a href="javascript:;">Cancel Ticket</a></li>
+                                    <li><a href="javascript:;">Download Ticket</a></li>
+                                    <li><a href="javascript:;">Send SMS / Email</a></li>
+                                    <li><a href="javascript:;">Reschedule Ticket</a></li>
+                                    <li><a href="javascript:;">Check Refund Status</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="contact.html" class="active-list">Contact</a></li>
+                            <li><a href="https://cargo.avmbus.com/" target="_blank" class="active-list">Cargo</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header section end -->
+    <section id="body-content">
+        <!-- slider section -->
+        <div class="slider-panel">
+            <img src="./assets/images/slider-1.png" alt="slider-1.png" loading="lazy" width="100%">
+        </div>
+        <div class="about-section section-space">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg" data-sal="slide-right" data-sal-duration="1500">
+                        <h5 class="section-subtitle">WHO WE ARE?</h5>
+                        <h2 class="section-title">AVM Travels</h2>
+                        <p class="section-text">AVM Travels providing travel solutions to their passengers with best in class quality by operating brand new branded with well experienced professionals. Some of the Important routes of AVM Travels include Hyderabad to Bangalore to Hyderabad.</p>
+                        <div class="about-bottom">
+                            <h4><span><img src="./assets/images/about-icon-1.png" alt="about-icon-1.png" loading="lazy"></span>Fast Booking</h4>
+                            <h4><span><img src="./assets/images/about-icon-2.png" alt="about-icon-1.png" loading="lazy"></span>Stress Free</h4>
+                        </div>
+                        <p class="section-text">Book AVM Travels bus tickets online in website and from your mobile with few easy steps.</p>
+                    </div>
+
+                    <div class="col-md-12 col-lg">
+                        <img src="./assets/images/about-bus.png" alt="about-bus" width="100%" loading="lazy" data-sal="zoom-in" data-sal-duration="1500" data-sal-delay="200">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slider section end -->
+
+        <!-- amenity section -->
+        <div class="amenity-section section-space">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6 col-md amenity-inner" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="200">
+                        <img src="./assets/images/amenity-1.png" alt="amenity-1">
+                        <h6>Reading Lamp</h6>
+                    </div>
+                    <div class="col-6 col-md amenity-inner" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="200">
+                        <img src="./assets/images/amenity-2.png" alt="amenity-2">
+                        <h6>Television</h6>
+                    </div>
+                    <div class="col-6 col-md amenity-inner" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="400">
+                        <img src="./assets/images/amenity-3.png" alt="amenity-3">
+                        <h6>Water Bottle</h6>
+                    </div>
+                    <div class="col-6 col-md amenity-inner" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="600">
+                        <img src="./assets/images/amenity-4.png" alt="amenity-4">
+                        <h6>Charging Point</h6>
+                    </div>
+                    <div class="col-6 col-md amenity-inner" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="800">
+                        <img src="./assets/images/amenity-5.png" alt="amenity-5">
+                        <h6>Bed Sheet</h6>
+                    </div>
+                    <div class="col-6 col-md amenity-inner" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="1000">
+                        <img src="./assets/images/amenity-6.png" alt="amenity-6">
+                        <h6>Personal Wifi</h6>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- amenity section end -->
+
+        <!-- service section -->
+        <div class="service-section section-space text-center">
+            <div class="container">
+                <div class="section-subtitle">AVM Travels</div>
+                <div class="section-title">Services We Provide</div>
+                <div class="row">
+                    <div class="col-md-6 col-lg">
+                        <div class="service-inner" data-sal="slide-down" data-sal-duration="1500" data-sal-delay="200">
+                            <div class="service-icon">
+                                <img src="./assets/images/service-1.png" alt="service-1">
+                            </div>
+                            <h4>Comfy Sleepers</h4>
+                            <p class="section-text">Unwind in our clean and secure sleeper berths</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg">
+                        <div class="service-inner" data-sal="slide-down" data-sal-duration="1500" data-sal-delay="400">
+                            <div class="service-icon">
+                                <img src="./assets/images/service-2.png" alt="service-2">
+                            </div>
+                            <h4>Luggage Handling</h4>
+                            <p class="section-text">Personalized luggage handling by trained staff</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg">
+                        <div class="service-inner" data-sal="slide-down" data-sal-duration="1500" data-sal-delay="500">
+                            <div class="service-icon">
+                                <img src="./assets/images/service-3.png" alt="service-3">
+                            </div>
+                            <h4>Bus Captain</h4>
+                            <p class="section-text">Professional bus captain will assist you throught the journey</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg">
+                        <div class="service-inner" data-sal="slide-down" data-sal-duration="1500" data-sal-delay="300">
+                            <div class="service-icon">
+                                <img src="./assets/images/service-4.png" alt="service-4">
+                            </div>
+                            <h4>Boarding Crew</h4>
+                            <p class="section-text">Our trained staff helps you with easy check-in</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- service section end-->
+
+        <!-- Divider section   -->
+        <div class="divider-section text-center">
+            <div class="container">
+                <h5 class="section-subtitle">AVM Travels</h5>
+                <h2 class="section-title"><span class="boldColor">Experience</span> Safe and <br>
+                    Comfortable <span class="boldColor">Journeys With Us</span></h2>
+                <p class="section-text">Your search for the best and affordable deals on top searched routes in India ends here.
+                    <br>
+                    Choose from Sleeper, Semi-Sleeper, Volvo and many more buses while booking online and get <br>
+                    the affordable fare, multiple paying options, Best discounts and 24x7 customer service.
+                </p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="facility-inner text-center">
+                <div class="row">
+                    <div class="col-6 col-md amenity-inner">
+                        <img src="./assets/images/facility-1.png" alt="facility-1">
+                        <h6>Experience and Trust</h6>
+                    </div>
+                    <div class="col-6 col-md amenity-inner">
+                        <img src="./assets/images/facility-2.png" alt="facility-2">
+                        <h6>Happy Customers</h6>
+                    </div>
+                    <div class="col-6 col-md amenity-inner">
+                        <img src="./assets/images/facility-3.png" alt="facility-3">
+                        <h6>Decades of Services</h6>
+                    </div>
+                    <div class="col-6 col-md amenity-inner">
+                        <img src="./assets/images/facility-4.png" alt="facility-4">
+                        <h6>Customer Satisfaction</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Divider section end  -->
+
+        <!-- feature section  -->
+        <div class="feature-section section-space">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg feature-left">
+                        <h5 class="section-subtitle">AVM Travels</h5>
+                        <h2 class="section-title">Features We Provide</h2>
+                        <br>
+                        <p class="section-text">We are the creators of India’s 1st Comfort of branded buses that guarantee safe & comfortable journeys. We offer you a complete end-to-end travel experience with our professional crew, round the clock command centre and many other features. We put all our efforts into making every trip an on-time trip!</p>
+                        <div class="about-bottom">
+                            <h4><span><img src="./assets/images/feature-1.png" alt="feature-1"></span>Fast Booking</h4>
+                            <h4><span><img src="./assets/images/feature-2.png" alt="feature-2"></span> Stress Free</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg">
+                        <img src="./assets/images/feature-bus.png" alt="feature-bus" loading="lazy" width="100%" data-sal="zoom-out" data-sal-duration="1500">
+                    </div>
+                </div>
+                <br><br>
+                <div class="title-section text-center section-space">
+                    <h5 class="section-subtitle">AVM Travels</h5>
+                    <h2 class="section-title">Popular Routes</h2>
+                </div>
+                <div class="route-section text-center" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="200">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <img loading="lazy" width="100%" src="assets/images/route-1.png" alt="Routes">
+                        </div>
+                        <div class="col-md-6 col-lg-3 route-inner justify-content-center">
+                            <div>
+                                <h4>Hyderabad</h4>
+                                <span><i class="fas fa-exchange-alt"></i></span>
+                                <h4>Bangalore</h4><br><br>
+                                <p><b>Via:</b> Kurnool, Ananthapur</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <img loading="lazy" width="100%" src="assets/images/route-2.png" alt="Routes">
+                        </div>
+                        <div class="col-md-6 col-lg-3 route-inner justify-content-center">
+                            <div>
+                                <h4>Bangalore</h4>
+                                <span><i class="fas fa-exchange-alt"></i></span>
+                                <h4>Hyderabad</h4><br><br>
+                                <p><b>Via:</b> Kurnool, Ananthapur</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- feature section end -->
+
+        <!-- footer section -->
+        <footer class="footer-section">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                            <h2>Get In Touch</h2>
+                            <p class="footer-top-p"><i class="fas fa-map-marker-alt custom-fas2"></i>C/O Diwakar Travels, Lakdikapool.</p>
+                            <p><i class="fas fa-envelope custom-fas2"></i> <a class="footer-top-a" href="mailto:suresh1978gowni@gmail.com">suresh1978gowni@gmail.com</a></p>
+                            <p><i class="fas fa-phone custom-fas2"></i> <a class="footer-top-a" href="tel:7995144111">7995144111</a></p>
+                        </div>
+                        <div class="col-auto">
+                            <h2>Quick Links</h2>
+                            <ul>
+                                <li><a href="javascript:;">FAQ</a></li>
+                                <li><a href="javascript:;">Terms & Conditions</a></li>
+                                <li><a href="javascript:;">Feedback</a></li>
+                                <li><a href="javascript:;">Contact</a></li>
+                                <li><a href="javascript:;">Boarding Places</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-auto">
+                            <h2>Manage Ticket</h2>
+                            <ul>
+                                <li><a href="javascript:;">Download Ticket </a></li>
+                                <li><a href="javascript:;">Track Your Bus</a></li>
+                                <li><a href="javascript:;">Cancel Ticket</a></li>
+                                <li><a href="javascript:;">Change Boarding Point </a></li>
+                                <li><a href="javascript:;">Change Travel Date</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container footer-bottom">
+                <div class="row justify-content-between">
+                    <div class="col-auto">
+                        <p class="footer-bottom-p">Copyright © 2026 - AVM TRAVELS</p>
+                    </div>
+                    <div class="col-auto">
+                        <p class="footer-bottom-p">Powered By <a href="https://www.ezeeinfocloudsolutions.com/" target="_blank">Ezee Info Cloud Solutions</a> | <a href="https://www.ezeebus.com/" target="_blank">Ezeebus.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer section end -->
+
+
+    </section>
+    <script>
+        sal();
+    </script>
+</body>
+
+</html>

@@ -40,7 +40,8 @@ class StudentForm extends BaseController
 
     $qrCode = new CustomQrCode();
     $staffId = $studentData['staffId'];
-    $qrUrl = "http://172.16.200.128/student-login/public/studentform/staff/details/$staffId";
+    $qrUrl = "http://172.16.200.146/student-login/public/studentform/staff/details/$staffId";
+    // $qrUrl = base_url("studentform/staff/details/$staffId");
     $qrCodeImg = $qrCode->qrcode($qrUrl);
 
     $this->smarty->assign('qrCodeImg', $qrCodeImg);
@@ -483,4 +484,6 @@ class StudentForm extends BaseController
   {
     $this->smarty->display('staff-signup.tpl');
   }
+
+
 }

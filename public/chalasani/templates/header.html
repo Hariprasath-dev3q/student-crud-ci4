@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Online bus ticket booking</title>
+	<link rel="shortcut icon" href="../assets/images/favicon.png" type="image/png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../assets/css/header.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- jquery -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<!-- sal -->
+	<!-- <link rel="stylesheet" href="assets/lib/sal/sal.css"> -->
+	<link href="https://unpkg.com/sal.js@0.8.5/dist/sal.css" rel="stylesheet">
+
+	<!-- Slick CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+	<!-- Slick Theme CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+	<!-- Slick JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+</head>
+
+<body>
+	<!-- header section -->
+	<header>
+		<!-- top navbar -->
+		<div class="top-navbar">
+			<div class="container">
+				<div class="row justify-content-between align-items-center">
+					<div class="col-auto">
+						<ul class="header-list">
+							<li class="header-top-list"><i class="fa-solid fa-phone top-fa-icon"></i><a href="tel:9152855285">91 5285
+									5285</a></li>
+							<li class="ms-3 header-top-list"> <i class="fa-solid fa-envelope top-fa-icon"></i><a href="mailto:chalasanitravels2023@gmail.com">chalasanitravels2023@gmail.com</a></li>
+						</ul>
+					</div>
+					<div class="col-auto">
+						<div class="header-top">
+							<ul>
+								<li class="header-top-list"><a href="#"><i class="fa-solid fa-arrow-right-to-bracket top-fa-icon"></i>Customer Login</a></li>
+								<li class="header-top-list ms-2"><a href="#"><i class="fa-solid fa-user top-fa-icon"></i>Login</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- bottom navbar -->
+		<div class="bottom-navbar">
+			<div class="container">
+				<div class="row align-items-center justify-content-between">
+					<div class="col-md-auto">
+						<a href="header.html"><img class="bottom-list-img1" class="logo" src="../assets/images/logo.png" alt="logo.png" loading="lazy"></a>
+					</div>
+					<div class="col-md-auto">
+						<ul class="bottom-nav-list">
+							<li><a href="header.html">Home</a></li>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">Manage Ticket<b class="caret" aria-expanded="true"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="javascript:;">Print Ticket</a></li>
+									<li><a href="javascript:;">Edit Ticket</a></li>
+									<li><a href="javascript:;">Cancel Ticket</a></li>
+									<li><a href="javascript:;">Download Ticket</a></li>
+									<li><a href="javascript:;">Send SMS / Email</a></li>
+									<li><a href="javascript:;">Reschedule Ticket</a></li>
+									<li><a href="javascript:;"> Check Refund Status</a></li>
+								</ul>
+							</li>
+							<li><a href="../templates/trackbus.html">Track Bus</a></li>
+							<li><a href="contact.html">Contact</a></li>
+							<li><a href="https://play.google.com/store/apps/details?id=com.ezee.chalasani" target="_blank"><img src="../assets/images/google-play-badge.png" class="bottom-list-img2" alt="google-play-badge.png" width="120px" loading="lazy"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+
+	<section id="body-content">
+
+		<!-- Slider section -->
+		<div class="slider-panel">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-6">
+						<h6 class="section-title">Chalasani Travels</h6>
+						<h2 class="section-subtitle">A Great Journey With Us</h2>
+						<p class="section-content">We are the creators of India's 1st comfort of branded buses that
+							guarantee safe & comfortable journeys.</p>
+						<img src="../assets/images/slider-1.png" alt="slider-1.png" loading="lazy" data-sal="zoom-in" data-sal-duration="1500">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Slider end -->
+
+		<!-- Routes Section -->
+		<div class="route-section">
+			<div class="route-slider">
+				<div class="route-inner">
+					<img src="../assets/images/route-2.png" alt="Vijayawada" width="100%" loading="lazy">
+					<h6>Vijayawada</h6>
+				</div>
+				<div class="route-inner">
+					<img src="../assets/images/route-3.png" alt="Guntur" width="100%">
+					<h6>Guntur</h6>
+				</div>
+				<div class="route-inner">
+					<img src="../assets/images/route-7.png" alt="Chilakaluripet" width="100%" loading="lazy">
+					<h6>Chilakaluripet</h6>
+				</div>
+				<div class="route-inner">
+					<img src="../assets/images/route-4.png" alt="Ongole" width="100%" loading="lazy">
+					<h6>Ongole</h6>
+				</div>
+				<div class="route-inner">
+					<img src="../assets/images/route-5.png" alt="Nellore" width="100%" loading="lazy">
+					<h6>Nellore</h6>
+				</div>
+				<div class="route-inner">
+					<img src="../assets/images/route-8.png" alt="Tirupati" width="100%" loading="lazy">
+					<h6>Tirupati</h6>
+				</div>
+				<div class="route-inner">
+					<img src="../assets/images/route-6.png" alt="Bangalore" width="100%" loading="lazy">
+					<h6>Bangalore</h6>
+				</div>
+			</div>
+
+		</div>
+		<!-- Routes Section End -->
+
+		<!-- Service Section -->
+		<div class="service-section">
+			<div class="container">
+				<div class="row justify-content-between align-items-center">
+					<div class="col-md-5">
+						<img src="../assets/images/service-bus.png" class="service-bus" alt="service-bus" width="100%" loading="lazy" data-sal="zoom-in" data-sal-duration="1500">
+					</div>
+					<div class="col-md-7">
+						<h6 class="section-title">Chalasani Travels</h6>
+						<h2 class="section-subtitle">A Real Good Choice To Travel</h2>
+						<br>
+						<p>We are professional team, With good experience & passionate about our service for you and we
+							have
+							quality completed buses for your travel.</p>
+						<br>
+						<div class="row justify-content-center">
+							<div class="col-md-8">
+								<div class="service-cards" data-sal="slide-up" data-sal-duration="1200">
+									<div class="service-card">
+										<div class="service-icon">
+											<img src="../assets/images/service-1.png" alt="Fast Booking" loading="lazy">
+										</div>
+										<h6>Fast Booking</h6>
+										<p class="service-text">Enjoy buying your bus tickets online from home or on the go, with our mobile friendly site</p>
+									</div>
+									<div class="service-card">
+										<div class="service-icon">
+											<img src="../assets/images/service-2.png" alt="Stress Free" loading="lazy">
+										</div>
+										<h6>Stress Free</h6>
+										<p class="service-text">The simplest and stress free way to book your bus travel
+											all
+											in one purchase.</p>
+									</div>
+									<div class="service-card">
+										<div class="service-icon">
+											<img src="../assets/images/service-3.png" alt="Spend Less" loading="lazy">
+										</div>
+										<h6>Spend Less</h6>
+										<p class="service-text">We have the affordable prices and the best carriers all
+											in
+											one place</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Service Section End -->
+
+		<!-- Amenity section -->
+		<div class="amenity-section">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-6">
+						<h6 class="section-title">Chalasani Travels</h6>
+						<h2 class="section-subtitle">Amenities We Provide</h2>
+					</div>
+					<div class="col-md-6">
+						<p>Your search for the best and affordable deals on top searched routes in India ends here.</p>
+					</div>
+					<br>
+					<div class="row align-items-center mt-4">
+						<div class="col-6 col-lg" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="200">
+							<div class="amenity-card">
+								<div class="amenity-icon">
+									<img src="../assets/images/amenity-5 (1).png" alt="Reading Lamp">
+								</div>
+								<h6 class="amenity-title">Reading Lamp</h6>
+
+							</div>
+						</div>
+						<div class="col-6 col-lg" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="400">
+							<div class="amenity-card">
+								<div class="amenity-icon">
+									<img src="../assets/images/amenity-3.png" alt="Live Tracking">
+								</div>
+								<h6 class="amenity-title">Live Tracking</h6>
+							</div>
+						</div>
+						<div class="col-6 col-lg" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="800">
+							<div class="amenity-card">
+								<div class="amenity-icon">
+									<img src="../assets/images/amenity-4.png" alt="Charging Point">
+								</div>
+								<h6 class="amenity-title"> Charging Point</h6>
+							</div>
+						</div>
+						<div class="col-6 col-lg" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="1000">
+							<div class="amenity-card">
+								<div class="amenity-icon">
+									<img src="../assets/images/amenity-7.png" alt="Bed Sheet">
+								</div>
+								<h6 class="amenity-title">Bed Sheet</h6>
+							</div>
+						</div>
+						<div class="col-6 col-lg" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="1200">
+							<div class="amenity-card">
+								<div class="amenity-icon">
+									<img src="../assets/images/amenity-1.png" alt="Water Bottle">
+								</div>
+								<h6 class="amenity-title">Water Bottle </h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Amenity section End -->
+
+		<!-- About section -->
+		<div class="about-section">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-7">
+						<h6>Who We Are?</h6>
+						<h2>Chalasani Travels</h2>
+						<br>
+						<p>Chalasani Travels has steadily grown over the years and it has become premier travel service
+							provider in India. Chalasani Travels today has a large number of Bus across the states.
+							Chalasani Travels with years of experience in the travel industry has been complemented by
+							goodwill with the customers that they have created. Chalasani Travels operates daily trips
+							to Hyderabad to Vijayawada, Guntur to Hyderabad, Chennai to Vijayawada</p>
+						<p>Our travel services are perfect to make the holiday of our tourists most undisturbed</p>
+					</div>
+					<div class="col-md-5">
+						<img src="../assets/images/about-bus.png" alt="about-bus.png" width="100%" loading="lazy" data-sal="zoom-in" data-sal-duration="1500">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- About section End -->
+
+		<!-- Feature section -->
+		<div class="feature-section mt-5">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-5">
+						<h6>Chalasani Travels</h6>
+						<h2>Features We Provide</h2>
+					</div>
+					<div class="col-md-7">
+						<p>Choose from sleeper, semi-sleeper, volvo and many more buses while booking online and get the
+							affordable fare and multiple paying options.</p>
+					</div>
+				</div>
+				<br>
+				<div class="feature-cards">
+					<div class="row ">
+						<div class="col-md-4">
+							<div class="feature-card" data-sal="slide-down" data-sal-duration="1500" data-sal-delay="200">
+								<div class="feature-icon">
+									<img src="../assets/images/feature-1.png" alt=" Comfy Sleepers" width="100%" loading="lazy">
+								</div>
+								<h6>Comfy Sleepers</h6>
+								<hr>
+								<p class="feature-text">Professional bus captain will assist you throught the journey</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="feature-card" data-sal="slide-down" data-sal-duration="1500" data-sal-delay="500">
+								<div class="feature-icon">
+									<img src="../assets/images/feature-2.png" alt="Boarding Crew" width="100%" loading="lazy">
+								</div>
+								<h6>Boarding Crew</h6>
+								<hr>
+								<p class="feature-text">Our trained staff helps you with easy check-in</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="feature-card" data-sal="slide-down" data-sal-duration="1500" data-sal-delay="800">
+								<div class="feature-icon">
+									<img src="../assets/images/feature-3.png" alt="Luggage Handling" width="100%" loading="lazy">
+								</div>
+								<h6>Luggage Handling</h6>
+								<hr>
+								<p class="feature-text">Personalized luggage handling by trained staff</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Feature section End -->
+
+		<!-- Facility section -->
+		<div class="facility-section">
+			<div class="container">
+				<h6 class="section-title text-center">Chalasani Travels</h6>
+				<h2 class="section-subtitle text-center">Facilities We Provide</h2>
+				<div class="row justify-content-between ">
+					<div class="col-6 col-lg-3">
+						<div class="facility-card" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="200">
+							<div class="facility-icon facility-icon-01">
+								<img src="../assets/images/facility-1.png" alt="Safe and Secure" loading="lazy">
+							</div>
+							<h5>Safe and Secure</h5>
+						</div>
+					</div>
+					<div class="col-auto">
+						<div class="facility-card" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="400">
+							<div class="facility-icon facility-icon-02">
+								<img src="../assets/images/facility-2.png" alt="Best Hospitality" loading="lazy">
+							</div>
+							<h5>Best Hospitality</h5>
+						</div>
+					</div>
+					<div class="col-auto">
+						<div class="facility-card" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="700">
+							<div class="facility-icon facility-icon-03">
+								<img src="../assets/images/facility-3.png" alt="Experienced Captain" loading="lazy">
+							</div>
+							<h5>Experienced Captain</h5>
+						</div>
+					</div>
+					<div class="col-auto">
+						<div class="facility-card" data-sal="slide-up" data-sal-duration="1500" data-sal-delay="900">
+							<div class="facility-icon facility-icon-04">
+								<img src="../assets/images/facility-4.png" alt="Emergency Exit" loading="lazy">
+							</div>
+							<h5>Emergency Exit</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- Facility section End -->
+		<script src="https://unpkg.com/sal.js@0.8.5/dist/sal.js"></script>
+		<script>
+			$(document).ready(function () {
+				sal();
+				// Initialize Slick
+				$('.route-slider').slick({
+					arrows: false,
+					autoplay: true,
+					autoplaySpeed: 1200,
+					speed: 1200,
+					slidesToShow: 6,
+					slidesToScroll: 1,
+					responsive: [{
+						breakpoint: 768,
+						settings: {
+							infinite: true,
+							slidesToShow: 2
+						}
+					},
+					{
+						breakpoint: 480,
+						settings: {
+							infinite: true,
+							slidesToShow: 2,
+							slidesToScroll: 1
+						}
+					}
+					]
+				});
+			});
+		</script>
+	</section>
+
+	<footer>
+		<div class="footer-top">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-md-4">
+						<div class="footer-logo">
+							<img src="../assets/images/footer-logo.png" alt="footer-logo" loading="lazy">
+						</div>
+						<p>Book Chalasani Travels tickets online in website and from your mobile with few easy steps. Go to <b>My Bookings</b> to manage your account..</p>
+					</div>
+					<div class="col-auto">
+						<h5>Quick Links</h5>
+						<ul class="footer-links">
+							<li class="list-unstyled"><a class="text-light" href="faq">FAQ</a></li>
+							<li class="list-unstyled"><a class="text-light" href="terms">Terms & Conditions</a></li>
+							<li class="list-unstyled"><a class="text-light" href="feedback">Feedback</a></li>
+							<li class="list-unstyled"><a class="text-light" href="contact">Contact</a></li>
+							<li class="list-unstyled"><a class="text-light" href="boarding places">Boarding Places</a></li>
+						</ul>
+					</div>
+					<div class="col-auto">
+						<h5>Manage Ticket</h5>
+						<ul class="footer-links">
+							<li class="list-unstyled"><a class="text-light" href="javascript:;">Download Ticket</a></li>
+							<li class="list-unstyled"><a class="text-light" href="javascript:;">Track Your Bus</a></li>
+							<li class="list-unstyled"><a class="text-light" href="javascript:;">Cancel Ticket</a></li>
+							<li class="list-unstyled"><a class="text-light" href="javascript:;">Change Boarding Point</a></li>
+							<li class="list-unstyled"><a class="text-light" href="javascript:;">Change Travel Date</a></li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h5>Head Office</h5>
+						<ul class="footer-links">
+							<li class="list-unstyled position-relative">
+								<span></span>
+								<p><i class="fa-solid fa-location-dot position-absolute mt-2"></i></p>
+								<address class="ms-4">Near Durga Kalamandir, Gandhi Nagar, Vijayawada NTR District, Andhra Pradesh 520003.</address>
+							</li>
+							<li class="list-unstyled position-relative"><i class="fa-solid fa-phone"></i><a class="text-light ms-2" href="tel:9152855285">91 5285 5285</a></li>
+							<li class="list-unstyled position-relative"><i class="fa-solid fa-envelope"></i><a class="text-light ms-2" href="mailto:chalasanitravels2023@gmail.com">chalasanitravels2023@gmail.com</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- footer bottom -->
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-md-auto">
+						<p>Copyright © 2026 - Chalasani Travels</p>
+					</div>
+					<div class="col-md-auto">
+						<p>Powered By <a href="https://www.ezeeinfocloudsolutions.com/" target="_blank" class="ezeeinfo-link">Ezee Info Cloud Solutions</a> | <a href="https://www.ezeebus.com/" target="_blank" class="ezeeinfo-link">Ezeebus.com</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- footer bottom end -->
+
+	</footer>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
